@@ -1,0 +1,49 @@
+@use "globals";
+
+/* Import partials */
+@import "header";
+@import "aside";
+@import "customer";
+@import "orders";
+@import "mainContent";
+
+/* General Styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  font-family: globals.$ff-common;
+}
+
+/* Styles Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+footer p {
+  font-size: 8px;
+}
+
+/* TODO 
+Styling mobile - Orders
+Order - Header: Drop down mit Body Details
+Drop Down My Data Mobile View
+*/

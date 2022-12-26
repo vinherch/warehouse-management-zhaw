@@ -1,0 +1,38 @@
+@use "globals";
+/* Styles Main Container / Content */
+
+/* Desktop View */
+.container {
+  padding: 2rem;
+  height: 70vh;
+}
+
+.container-data {
+  display: flex;
+  height: 100%;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+#main-welcome {
+  width: 100%;
+}
+
+#main-welcome h2 {
+  font-size: 3.5rem;
+  color: globals.$clr-fnt-common;
+  margin-bottom: 3rem;
+}
+
+/* Mobile View */
+@media screen and (max-width: 768px) {
+  .container-data {
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow-y: scroll;
+  }
+
+  #main-welcome h2 {
+    font-size: 2.5rem;
+  }
+}

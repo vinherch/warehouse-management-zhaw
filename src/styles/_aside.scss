@@ -1,0 +1,92 @@
+@use "globals";
+/* Styles Aside Menue */
+
+/* Desktop View */
+.side-menue {
+  width: 50vw;
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 5px 15px rgba(56, 56, 56, 0.5);
+  z-index: 10;
+  background-color: #fff;
+  align-items: center;
+  width: 45rem;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+  transition: transform 500ms ease;
+}
+
+.open {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.open-l1 {
+  transform-origin: center;
+  transform: rotate(45deg) translateX(10px);
+  transition: transform 500ms ease;
+}
+
+.open-l2 {
+  opacity: 0;
+  transition: transform 500ms ease;
+}
+
+.open-l3 {
+  transform-origin: center;
+  transform: rotate(-45deg) translateX(10px);
+  transition: transform 500ms ease;
+}
+
+.side-menue-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  text-align: right;
+  height: 90%;
+  width: 100%;
+  padding: 3rem;
+  color: globals.$clr-fnt-headings;
+}
+
+.side-menue-container h3 {
+  font-size: 3rem;
+}
+
+.side-menue-container h4 {
+  font-size: 2.5rem;
+  padding-bottom: 0.7rem;
+}
+
+.side-menue-container p {
+  font-size: 1.5rem;
+  color: globals.$clr-fnt-common;
+}
+
+.side-menue-container li,
+ul,
+a {
+  text-decoration: none;
+  list-style: none;
+  font-size: 1.5rem;
+  padding: 0.3rem 0rem;
+  color: globals.$clr-fnt-common;
+}
+
+.side-menue-articles ul,
+.side-menue-mydata ul {
+  cursor: pointer;
+}
+
+/* Mobile View */
+@media screen and (max-width: 768px) {
+  .side-menue {
+    width: 100vw;
+  }
+}

@@ -1,0 +1,79 @@
+@use "globals";
+/* Styles Header */
+
+/* Desktop View */
+header {
+  display: flex;
+  padding: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5rem;
+  min-height: 20vh;
+  min-width: 100vw;
+  background-image: linear-gradient(to right, globals.$clr-header-white, globals.$clr-header-blue);
+  box-shadow: 0px 2px 20px rgba(56, 56, 56, 0.5), 0px 4px 30px rgba(56, 56, 56, 0.5), inset 100vw 20vh rgba(110, 110, 110, 0.4);
+}
+
+.header-title {
+  font-size: 3rem;
+  color: globals.$clr-fnt-headings;
+  color: rgb(55, 55, 55);
+  text-shadow: 3px 3px 10px rgb(95, 95, 95);
+}
+
+.header-title h3 {
+  font-size: 2.5rem;
+}
+
+.header-title h1 {
+  font-size: 4rem;
+}
+
+.header-title span {
+  font-size: 2rem;
+}
+
+.logo {
+  filter: drop-shadow(5px 5px 7px rgb(95, 95, 95));
+  opacity: 0.7;
+}
+
+header img {
+  width: 7.5rem;
+}
+
+.header-menue {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.header-menue span {
+  padding: 0.15rem 2rem;
+  margin: 0.25rem;
+  background-color: globals.$clr-fnt-headings;
+  pointer-events: none;
+}
+
+/* Mobile View */
+@media screen and (max-width: 768px) {
+  .header {
+    margin-bottom: 2rem;
+  }
+
+  .logo img {
+    width: 5rem;
+  }
+
+  .header-title {
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .header-title h1 {
+    font-size: 2.3rem;
+  }
+}
