@@ -25,6 +25,11 @@ body {
   font-family: globals.$ff-common;
 }
 
+#root {
+  position: relative;
+  overflow: hidden;
+}
+
 /* Styles Footer */
 footer {
   position: fixed;

@@ -1,18 +1,18 @@
 import React from "react";
 
-function Header() {
+function Header({ aSideMenueHandler, asideMenueState }) {
   return (
-    <header class="header">
-      <div class="logo">
-        <img src="./assets/warehouse.png" alt="Logo Lagerverwaltung" />
+    <header className="header">
+      <div className="logo">
+        <img src="./assets/warehouse_header.png" alt="Logo Lagerverwaltung" />
       </div>
-      <div class="header-title">
+      <div className="header-title">
         <h1>Lagerverwaltung</h1>
       </div>
-      <div class="header-menue">
-        <span class="line line1"></span>
-        <span class="line line2"></span>
-        <span class="line line3"></span>
+      <div className="header-menue" onClick={aSideMenueHandler}>
+        <span className={`line line1 ${asideMenueState ? "open-l1" : ""}`}></span>
+        <span className={`line line2 ${asideMenueState ? "open-l2" : ""}`}></span>
+        <span className={`line line3 ${asideMenueState ? "open-l3" : ""}`}></span>
       </div>
     </header>
   );

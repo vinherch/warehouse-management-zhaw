@@ -2,7 +2,7 @@
 /* Styles Aside Menue */
 
 /* Desktop View */
-.side-menue {
+.aside-container {
   width: 50vw;
   opacity: 0;
   display: flex;
@@ -12,13 +12,60 @@
   z-index: 10;
   background-color: #fff;
   align-items: center;
-  width: 45rem;
   height: 100vh;
   position: absolute;
   top: 0;
   right: 0;
   transform: translateX(100%);
   transition: transform 500ms ease;
+}
+
+.aside-menue {
+  text-align: left;
+  height: 70%;
+  width: 100%;
+  padding: 3rem;
+  padding-left: 10rem;
+  display: flex;
+  flex-direction: column;
+  color: globals.$clr-fnt-headings;
+
+  .aside-menue-section {
+    margin-top: 5rem;
+    flex: 1;
+  }
+
+  h4 {
+    font-size: 3rem;
+    color: globals.$clr-fnt-common;
+  }
+
+  ul,
+  li,
+  a {
+    text-decoration: none;
+    list-style: none;
+    font-size: 2rem;
+    padding: 1rem 0rem;
+    color: globals.$clr-fnt-common;
+    cursor: pointer;
+    transition: background-color 350ms ease;
+    width: 100%;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    margin: 2rem 0rem;
+  }
+
+  li:hover,
+  :active,
+  :focus {
+    background-color: #dbdbdb;
+  }
 }
 
 .open {
@@ -43,50 +90,9 @@
   transition: transform 500ms ease;
 }
 
-.side-menue-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: flex-end;
-  text-align: right;
-  height: 90%;
-  width: 100%;
-  padding: 3rem;
-  color: globals.$clr-fnt-headings;
-}
-
-.side-menue-container h3 {
-  font-size: 3rem;
-}
-
-.side-menue-container h4 {
-  font-size: 2.5rem;
-  padding-bottom: 0.7rem;
-}
-
-.side-menue-container p {
-  font-size: 1.5rem;
-  color: globals.$clr-fnt-common;
-}
-
-.side-menue-container li,
-ul,
-a {
-  text-decoration: none;
-  list-style: none;
-  font-size: 1.5rem;
-  padding: 0.3rem 0rem;
-  color: globals.$clr-fnt-common;
-}
-
-.side-menue-articles ul,
-.side-menue-mydata ul {
-  cursor: pointer;
-}
-
 /* Mobile View */
 @media screen and (max-width: 768px) {
-  .side-menue {
+  .aside-container {
     width: 100vw;
   }
 }
