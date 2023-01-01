@@ -2,10 +2,8 @@
 
 /* Import partials */
 @import "header";
+@import "dashboard";
 @import "aside";
-@import "customer";
-@import "orders";
-@import "mainContent";
 
 /* General Styles */
 *,
@@ -40,10 +38,5 @@ footer {
 
 footer p {
   font-size: 8px;
+  padding: 1rem 0rem;
 }
-
-/* TODO 
-Styling mobile - Orders
-Order - Header: Drop down mit Body Details
-Drop Down My Data Mobile View
-*/

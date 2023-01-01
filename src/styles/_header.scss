@@ -4,20 +4,17 @@
 /* Desktop View */
 header {
   display: flex;
-  padding: 2rem;
+  padding: 2.5rem 5rem;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5rem;
   min-height: 20vh;
   min-width: 100vw;
-  background-image: linear-gradient(to right, globals.$clr-header-white, globals.$clr-header-blue);
-  box-shadow: 0px 2px 20px rgba(56, 56, 56, 0.5), 0px 4px 30px rgba(56, 56, 56, 0.5), inset 100vw 20vh rgba(110, 110, 110, 0.4);
+  color: globals.$clr-fnt-headings;
+  background-image: linear-gradient(to right, globals.$clr-header-white, globals.$clr-header-gray);
 }
 
 .header-title {
   font-size: 3rem;
-  color: globals.$clr-fnt-headings;
-  color: rgb(55, 55, 55);
   text-shadow: 3px 3px 10px rgb(95, 95, 95);
 }
 
@@ -26,7 +23,7 @@ header {
 }
 
 .header-title h1 {
-  font-size: 4rem;
+  font-size: 5rem;
 }
 
 .header-title span {
@@ -34,12 +31,12 @@ header {
 }
 
 .logo {
-  filter: drop-shadow(5px 5px 7px rgb(95, 95, 95));
+  filter: drop-shadow(5px 5px 7px rgb(157, 157, 157));
   opacity: 0.7;
 }
 
 header img {
-  width: 7.5rem;
+  width: 14rem;
 }
 
 .header-menue {
@@ -59,13 +56,14 @@ header img {
 }
 
 /* Mobile View */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1110px) {
   .header {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    padding: 2.5rem 2rem;
   }
 
   .logo img {
-    width: 5rem;
+    width: 6.5rem;
   }
 
   .header-title {
@@ -74,6 +72,6 @@ header img {
   }
 
   .header-title h1 {
-    font-size: 2.3rem;
+    font-size: 2.5rem;
   }
 }

@@ -1,0 +1,97 @@
+@use "globals";
+
+/* Desktop View */
+.container {
+  padding: 5rem 7rem;
+  height: 75vh;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 2.7rem;
+  color: globals.$clr-fnt-common;
+}
+
+.card {
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5), 10px 10px 20px rgba(50, 50, 50, 0.2);
+  border-radius: 0.7rem;
+  transition: scale 250ms ease;
+  padding: 5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  p {
+    font-size: 1.7rem;
+  }
+
+  h4 {
+    font-size: 4rem;
+    color: rgb(95, 95, 95);
+    align-self: center;
+  }
+
+  .card-desc {
+    text-align: center;
+  }
+
+  &:hover,
+  &:active {
+    scale: 1.05;
+    box-shadow: inset 0px 0px 15px rgba(13, 219, 255, 0.5), 0px 0px 15px rgba(231, 21, 182, 0.5);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 102%;
+    height: 102%;
+    border-radius: 0.7rem;
+    pointer-events: none;
+
+    z-index: -3;
+  }
+}
+
+.dashboard-img img {
+  width: 11rem;
+}
+
+/* Larger View */
+@media screen and (min-width: 2560px) {
+  .dashboard-img img {
+    width: 15rem;
+  }
+}
+
+/* Mobile View */
+@media screen and (max-width: 1110px) {
+  .container {
+    padding: 2rem;
+  }
+
+  .card {
+    padding: 2rem;
+
+    .card-desc {
+      padding: 2rem 0rem;
+    }
+
+    .dashboard-img {
+      padding-bottom: 2rem;
+    }
+    p {
+      font-size: 1.5rem;
+    }
+
+    h4 {
+      font-size: 3rem;
+      margin-top: 0.5rem;
+    }
+  }
+  .dashboard-img img {
+    width: 6.5rem;
+  }
+}
