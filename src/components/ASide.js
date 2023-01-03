@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function ASide({ asideMenueState, setAsideMenueState }) {
   return (
@@ -9,22 +10,22 @@ function ASide({ asideMenueState, setAsideMenueState }) {
           <div className="aside-menue-control">
             <ul>
               <li>
-                <a href="#">Artikel</a>
+                <Link to="/articles">Artikel</Link>
               </li>
               <li>
-                <a href="#">Kategorien</a>
+                <Link to="/categories">Kategorien</Link>
               </li>
               <li>
-                <a href="#">Währungen</a>
+                <Link to="/currencies">Währungen</Link>
               </li>
               <li>
-                <a href="#">Lokationen</a>
+                <Link to="/locations">Lokationen</Link>
               </li>
               <li>
-                <a href="#">Stati</a>
+                <Link to="/status">Status</Link>
               </li>
               <li>
-                <a href="#">Warehouse</a>
+                <Link to="/warehouses">Warehouse</Link>
               </li>
             </ul>
           </div>

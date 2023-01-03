@@ -1,7 +1,7 @@
 import React from "react";
 
 function States() {
-  return <div></div>;
+  return <div>Hello from Status</div>;
 }
 
 export default States;
