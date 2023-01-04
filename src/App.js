@@ -8,6 +8,13 @@ import Footer from "./components/Footer";
 import ASide from "./components/ASide";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState } from "react";
+//Context
+import { ArticlesProvider } from "./contexts/ArticlesContext";
+import { CategoriesProvider } from "./contexts/CategoriesContext";
+import { CurrenciesProvider } from "./contexts/CurrenciesContext";
+import { LocationsProvider } from "./contexts/LocationsContext";
+import { StatusProvider } from "./contexts/StatusContext";
+import { WarehousesProvider } from "./contexts/WarehousesContext";
 
 //Views / Pages
 import Articles from "./views/Articles";
@@ -22,17 +29,18 @@ function App() {
   const [asideMenueState, setAsideMenueState] = useState(false);
 
   /* Control aside menue state. Passing down via props to Aside */
-  const aSideMenueHandler = (ev) => {
+  const asideMenueHandler = (ev) => {
     if (asideMenueState) {
       setAsideMenueState(false);
       return;
+    } else {
+      setAsideMenueState(true);
     }
-    setAsideMenueState(true);
   };
 
   return (
     <Router>
-      <Header aSideMenueHandler={aSideMenueHandler} asideMenueState={asideMenueState} />
+      <Header aSideMenueHandler={asideMenueHandler} asideMenueState={asideMenueState} />
       <Footer />
       <Routes>
         <Route
@@ -47,22 +55,64 @@ function App() {
         ></Route>
       </Routes>
       <Routes>
-        <Route path={"/articles"} element={<Articles />} />
+        <Route
+          path={"/articles"}
+          element={
+            <ArticlesProvider>
+              <Articles setAsideMenueState={setAsideMenueState} />
+            </ArticlesProvider>
+          }
+        />
       </Routes>
       <Routes>
-        <Route path={"/categories"} element={<Categories />} />
+        <Route
+          path={"/categories"}
+          element={
+            <CategoriesProvider>
+              <Categories setAsideMenueState={setAsideMenueState} />
+            </CategoriesProvider>
+          }
+        />
       </Routes>
       <Routes>
-        <Route path={"/currencies"} element={<Currencies />} />
+        <Route
+          path={"/currencies"}
+          element={
+            <CurrenciesProvider>
+              <Currencies setAsideMenueState={setAsideMenueState} />
+            </CurrenciesProvider>
+          }
+        />
       </Routes>
       <Routes>
-        <Route path={"/locations"} element={<Locations />} />
+        <Route
+          path={"/locations"}
+          element={
+            <LocationsProvider>
+              <Locations setAsideMenueState={setAsideMenueState} />
+            </LocationsProvider>
+          }
+        />
       </Routes>
       <Routes>
-        <Route path={"/status"} element={<Status />} />
+        <Route
+          path={"/status"}
+          element={
+            <StatusProvider>
+              <Status setAsideMenueState={setAsideMenueState} />
+            </StatusProvider>
+          }
+        />
       </Routes>
       <Routes>
-        <Route path={"/warehouses"} element={<Warehouses />} />
+        <Route
+          path={"/warehouses"}
+          element={
+            <WarehousesProvider>
+              <Warehouses setAsideMenueState={setAsideMenueState} />
+            </WarehousesProvider>
+          }
+        />
       </Routes>
     </Router>
   );
