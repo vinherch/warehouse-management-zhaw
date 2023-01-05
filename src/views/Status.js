@@ -1,8 +1,9 @@
 import React from "react";
 import StatusContext from "../contexts/StatusContext";
+import StatusItemContainer from "../components/StatusItemContainer";
 import { useEffect, useContext } from "react";
 
-function States({ setAsideMenueState }) {
+function Status({ setAsideMenueState }) {
   //const {} = useContext(StatusContext);
 
   //useEffect - Ensure aside menue closes if component loads
@@ -10,7 +11,7 @@ function States({ setAsideMenueState }) {
     setAsideMenueState(false);
   }, []);
 
-  return <div>Hello from Status</div>;
+  return <StatusItemContainer />;
 }
 
-export default States;
+export default Status;

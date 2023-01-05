@@ -46,10 +46,16 @@
     text-decoration: none;
     list-style: none;
     font-size: 2rem;
-    padding: 1rem 0rem;
+
     color: globals.$clr-fnt-common;
     cursor: pointer;
     transition: background-color 350ms ease;
+    width: 100%;
+  }
+
+  li a {
+    display: inline-block;
+    padding: 1rem 0rem;
     width: 100%;
   }
 

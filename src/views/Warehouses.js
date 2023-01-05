@@ -1,5 +1,6 @@
 import React from "react";
 import WarehousesContext from "../contexts/WarehousesContext";
+import WarehousesItemContainer from "../components/WarehousesItemContainer";
 import { useEffect, useContext } from "react";
 
 function Warehouses({ setAsideMenueState }) {
@@ -10,7 +11,7 @@ function Warehouses({ setAsideMenueState }) {
     setAsideMenueState(false);
   }, []);
 
-  return <div>Hello from Warehouse</div>;
+  return <WarehousesItemContainer />;
 }
 
 export default Warehouses;

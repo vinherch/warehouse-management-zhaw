@@ -1,5 +1,6 @@
 import React from "react";
 import CurrenciesContext from "../contexts/CurrenciesContext";
+import CurrenciesItemContainer from "../components/CurrenciesItemContainer";
 import { useEffect, useContext } from "react";
 
 function Currencies({ setAsideMenueState }) {
@@ -10,7 +11,7 @@ function Currencies({ setAsideMenueState }) {
     setAsideMenueState(false);
   }, []);
 
-  return <div>Hello from Currencies</div>;
+  return <CurrenciesItemContainer />;
 }
 
 export default Currencies;

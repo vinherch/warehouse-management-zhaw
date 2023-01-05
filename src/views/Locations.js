@@ -1,5 +1,6 @@
 import React from "react";
 import LocationsContext from "../contexts/LocationsContext";
+import LocationsItemContainer from "../components/LocationsItemContainer";
 import { useEffect, useContext } from "react";
 
 function Locations({ setAsideMenueState }) {
@@ -10,7 +11,7 @@ function Locations({ setAsideMenueState }) {
     setAsideMenueState(false);
   }, []);
 
-  return <div>Hello from Locations</div>;
+  return <LocationsItemContainer />;
 }
 
 export default Locations;

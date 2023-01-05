@@ -1,5 +1,6 @@
 import React from "react";
 import CategoriesContext from "../contexts/CategoriesContext";
+import CategoriesItemContainer from "../components/CategoriesItemContainer";
 import { useEffect, useContext } from "react";
 
 function Categories({ setAsideMenueState }) {
@@ -12,7 +13,7 @@ function Categories({ setAsideMenueState }) {
     setAsideMenueState(false);
   }, []);
 
-  return <div>Hello from Categories</div>;
+  return <CategoriesItemContainer />;
 }
 
 export default Categories;
