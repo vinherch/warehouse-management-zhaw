@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonEdit from "./shared/ButtonEdit";
-import ButtonDelete from "./shared/ButtonDelete";
+// import ButtonEdit from "./shared/ButtonUpdate";
+// import ButtonDelete from "./shared/ButtonDelete";
 
 function StatusItem() {
   return (
@@ -8,8 +8,8 @@ function StatusItem() {
       <td>Value ID</td>
       <td>Value description</td>
       <td style={{ padding: "0 0.7rem" }}>
-        <ButtonEdit />
-        <ButtonDelete />
+        {/* <ButtonEdit />
+        <ButtonDelete /> */}
       </td>
     </tr>
   );

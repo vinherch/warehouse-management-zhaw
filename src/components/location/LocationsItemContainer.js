@@ -1,13 +1,11 @@
 import React from "react";
 import LocationItem from "./LocationItem";
-import ButtonNew from "./shared/ButtonNew";
+// import ButtonNew from "./shared/ButtonNew";
 
 function LocationsItemContainer() {
   return (
     <div className="item-container">
-      <div className="item-container-header">
-        <ButtonNew>Lokation erfassen</ButtonNew>
-      </div>
+      <div className="item-container-header">{/* <ButtonNew>Lokation erfassen</ButtonNew> */}</div>
       <div className="item-container-content">
         <table>
           <thead>

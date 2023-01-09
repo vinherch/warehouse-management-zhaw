@@ -1,13 +1,11 @@
 import React from "react";
-import StatusItem from "./StatusItem";
-import ButtonNew from "./shared/ButtonNew";
+import CategoryItem from "../components/CategoryItem";
+// import ButtonNew from "../components/shared/ButtonNew";
 
-function StatusItemContainer() {
+function CategoriesItemContainer() {
   return (
     <div className="item-container">
-      <div className="item-container-header">
-        <ButtonNew>Status erfassen</ButtonNew>
-      </div>
+      <div className="item-container-header">{/* <ButtonNew>Kategorie erfassen</ButtonNew> */}</div>
       <div className="item-container-content">
         <table>
           <thead>
@@ -18,9 +16,9 @@ function StatusItemContainer() {
             </tr>
           </thead>
           <tbody>
-            <StatusItem />
-            <StatusItem />
-            <StatusItem />
+            <CategoryItem />
+            <CategoryItem />
+            <CategoryItem />
           </tbody>
         </table>
       </div>
@@ -28,4 +26,4 @@ function StatusItemContainer() {
   );
 }
 
-export default StatusItemContainer;
+export default CategoriesItemContainer;

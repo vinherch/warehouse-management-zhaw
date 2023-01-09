@@ -1,6 +1,6 @@
 import React from "react";
-import ButtonEdit from "./shared/ButtonEdit";
-import ButtonDelete from "./shared/ButtonDelete";
+// import ButtonEdit from "./shared/ButtonUpdate";
+// import ButtonDelete from "./shared/ButtonDelete";
 
 function CurrencyItem() {
   return (
@@ -9,8 +9,8 @@ function CurrencyItem() {
       <td>Value Währungscode</td>
       <td>Value Land</td>
       <td style={{ padding: "0 0.7rem" }}>
-        <ButtonEdit />
-        <ButtonDelete />
+        {/* <ButtonEdit />
+        <ButtonDelete /> */}
       </td>
     </tr>
   );
