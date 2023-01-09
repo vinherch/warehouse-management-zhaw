@@ -1,11 +1,23 @@
-import React from "react";
-import CategoryItem from "../components/CategoryItem";
-// import ButtonNew from "../components/shared/ButtonNew";
+import React, { useContext } from "react";
+import CategoryItem from "./CategoryItem";
+import ButtonCreateCategory from "./ButtonCreateCategory";
+import CategoriesContext from "../../contexts/CategoriesContext";
+import CategoryEdit from "./CategoryEdit";
+import CategoryNew from "./CategoryNew";
 
 function CategoriesItemContainer() {
+  //useContext - Get Categories Data / State from context
+  const { isEdit, isNewCategory, setIsNewCategory, category } = useContext(CategoriesContext);
+
   return (
     <div className="item-container">
-      <div className="item-container-header">{/* <ButtonNew>Kategorie erfassen</ButtonNew> */}</div>
+      <div className="item-container-header">
+        <ButtonCreateCategory setIsNewCategory={setIsNewCategory} isNewCategory={isNewCategory}>
+          Kategorie erfassen
+        </ButtonCreateCategory>
+      </div>
+      {isEdit && <CategoryEdit />}
+      {isNewCategory && <CategoryNew />}
       <div className="item-container-content">
         <table>
           <thead>
@@ -16,9 +28,9 @@ function CategoriesItemContainer() {
             </tr>
           </thead>
           <tbody>
-            <CategoryItem />
-            <CategoryItem />
-            <CategoryItem />
+            {category.map((e) => (
+              <CategoryItem item={e} key={e.id} />
+            ))}
           </tbody>
         </table>
       </div>
