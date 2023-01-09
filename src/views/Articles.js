@@ -1,18 +1,14 @@
 import React from "react";
-import { useEffect, useContext } from "react";
-import ArticlesContext from "../contexts/ArticlesContext";
-import ArticlesItemContainer from "../components/ArticlesItemContainer";
+import { useEffect } from "react";
+import ArticlesItemContainer from "../components/article/ArticlesItemContainer";
 
 function Articles({ setAsideMenueState }) {
-  const { data } = useContext(ArticlesContext);
-
-  console.log(data);
-
   //useEffect - Ensure aside menue closes if component loads
   useEffect(() => {
     setAsideMenueState(false);
   }, []);
 
+  //Returns LoadingSpinner if data is not yet loaded.
   return <ArticlesItemContainer />;
 }
 
