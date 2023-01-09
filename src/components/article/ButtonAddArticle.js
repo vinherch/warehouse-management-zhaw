@@ -15,7 +15,6 @@ function ButtonAddArticle({ articleDescription, currency, category, status, amou
         /* Cretae new article object - Call addArticle function from context. */
         if (!isDisabled) {
           addArticle({ description: articleDescription, currency, category, status, amount });
-        } else {
         }
       }}
     >

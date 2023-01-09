@@ -43,7 +43,7 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
       })
     );
 
-    //PUT Request /articles/:id to update article
+    //DELETE Request /articles/:id to delete article
     const res = await fetch(`/api/v1/articles/${data.id}`, {
       method: "DELETE",
     });
@@ -76,7 +76,6 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
     });
     if (!res.ok) {
       setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
-      return;
     }
     //set setIsEdit state to false after update
     setIsEdit(false);
