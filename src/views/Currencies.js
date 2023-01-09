@@ -1,11 +1,8 @@
 import React from "react";
-import CurrenciesContext from "../contexts/CurrenciesContext";
-import CurrenciesItemContainer from "../components/CurrenciesItemContainer";
-import { useEffect, useContext } from "react";
+import CurrenciesItemContainer from "../components/currency/CurrenciesItemContainer";
+import { useEffect } from "react";
 
 function Currencies({ setAsideMenueState }) {
-  //const {} = useContext(CurrenciesContext);
-
   //useEffect - Ensure aside menue closes if component loads
   useEffect(() => {
     setAsideMenueState(false);
