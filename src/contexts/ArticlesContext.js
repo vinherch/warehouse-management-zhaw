@@ -10,6 +10,8 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
   const [isEdit, setIsEdit] = useState(false);
   //State for new article - toggle article new mask
   const [isNewArticle, setIsNewArticle] = useState(false);
+  // State for checking if a article description already exists
+  const [isExistingArticleDescription, setIsExistingArticleDescription] = useState(false);
 
   //Operations for Article Management
   //Create new Article
@@ -84,7 +86,26 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
   };
 
   return (
-    <ArticlesContext.Provider value={{ article, setArticle, isNewArticle, setIsNewArticle, category, currency, selectedArticle, setSelectedArticle, isEdit, setIsEdit, status, addArticle, updateArticle, deleteArticle }}>
+    <ArticlesContext.Provider
+      value={{
+        article,
+        setArticle,
+        isNewArticle,
+        setIsNewArticle,
+        isExistingArticleDescription,
+        setIsExistingArticleDescription,
+        category,
+        currency,
+        selectedArticle,
+        setSelectedArticle,
+        isEdit,
+        setIsEdit,
+        status,
+        addArticle,
+        updateArticle,
+        deleteArticle,
+      }}
+    >
       {children}
     </ArticlesContext.Provider>
   );

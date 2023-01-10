@@ -5,7 +5,7 @@ import ButtonAddArticle from "./ButtonAddArticle";
 
 function ArticleNew() {
   //useContext for getting data of categories, currencies, status - which are required to create a new article
-  const { category, currency, status } = useContext(ArticlesContext);
+  const { article, category, currency, status, isExistingArticleDescription, setIsExistingArticleDescription } = useContext(ArticlesContext);
 
   /* States */
   /* State for article description text input - local state */
@@ -30,6 +30,7 @@ function ArticleNew() {
           <input
             type="text"
             id="article-description"
+            style={{ backgroundColor: isExistingArticleDescription && "rgba(255,0,0,0.3)" }}
             value={currentArticleDescription}
             onChange={(e) => {
               //Check if text input length is not 0
@@ -39,9 +40,18 @@ function ArticleNew() {
                 setIsDisabled(true);
               }
               setCurrentArticleDescription(e.target.value);
+              //Set isExistingArticleDescription to false before checking if article description already exists
+              setIsExistingArticleDescription(false);
+              article.map((a) => {
+                if (a.description === e.target.value) {
+                  setIsExistingArticleDescription(true);
+                }
+              });
             }}
           />
         </div>
+        {/* If check article description returns true - show message*/}
+        {isExistingArticleDescription && <div style={{ margin: "0.3rem 0rem 1rem 0rem", backgroundColor: "lightyellow" }}>Artikel / Beschreibung existiert bereits</div>}
         <div>
           <label htmlFor="currency-select">Währung: </label>
           <select
