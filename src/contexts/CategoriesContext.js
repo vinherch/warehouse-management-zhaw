@@ -10,6 +10,8 @@ export const CategoriesProvider = ({ children, category, setCategory, setIsError
   const [isEdit, setIsEdit] = useState(false);
   //State for new category - toggle category new mask
   const [isNewCategory, setIsNewCategory] = useState(false);
+  // State for checking if a category description code already exists
+  const [isExistingCategoryDescription, setIsExistingCategoryDescription] = useState(false);
 
   //Operations for Category Management
   //Create new Category
@@ -83,7 +85,9 @@ export const CategoriesProvider = ({ children, category, setCategory, setIsError
   };
 
   return (
-    <CategoriesContext.Provider value={{ category, setCategory, isNewCategory, setIsNewCategory, selectedCategory, setSelectedCategory, isEdit, setIsEdit, addCategory, updateCategory, deleteCategory }}>
+    <CategoriesContext.Provider
+      value={{ category, setCategory, isNewCategory, setIsNewCategory, setIsExistingCategoryDescription, isExistingCategoryDescription, selectedCategory, setSelectedCategory, isEdit, setIsEdit, addCategory, updateCategory, deleteCategory }}
+    >
       {children}
     </CategoriesContext.Provider>
   );
