@@ -23,7 +23,7 @@ function CategoryEdit() {
             <input
               type="text"
               id="category-description"
-              style={{ border: isExistingCategoryDescription && "1px solid red", backgroundColor: isExistingCategoryDescription && "rgba(255,0,0,0.3)" }}
+              style={{ backgroundColor: isExistingCategoryDescription && "rgba(255,0,0,0.3)" }}
               value={currentCategoryDescription}
               onChange={(e) => {
                 //Check if text input length is not 0

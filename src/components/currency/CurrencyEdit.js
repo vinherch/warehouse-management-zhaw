@@ -26,7 +26,7 @@ function CurrencyEdit() {
             <input
               type="text"
               id="currency-code"
-              style={{ border: isExistingCurrencyCode && "1px solid red", backgroundColor: isExistingCurrencyCode && "rgba(255,0,0,0.3)" }}
+              style={{ backgroundColor: isExistingCurrencyCode && "rgba(255,0,0,0.3)" }}
               value={currentCurrencyCode}
               onChange={(e) => {
                 //Check if text input length is not 0
