@@ -73,7 +73,7 @@ function CurrencyNew() {
               /* Cretae new currency object - Call addCurrency function from context. */
               /* Check if input != "" & if currency is not already existing */
               if (!isDisabled && !isExistingCurrencyCode) {
-                addCurrency({ countryCode: currentCurrencyCode, country: currentCurrencyCountry });
+                addCurrency({ currencyCode: currentCurrencyCode, country: currentCurrencyCountry });
               }
             }}
           >

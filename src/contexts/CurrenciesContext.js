@@ -17,20 +17,21 @@ export const CurrenciesProvider = ({ children, currency, setCurrency, setIsError
 
   //Create new currency
   const addCurrency = async (newCurrency) => {
-    //Update setCurrency state with new currency (TODO : receive new ID from API - not yet implemented)
-    // setCurrency(
-    //   currency.map((e) => {
-    //     if (e.id === data.id) {
-    //       return { ...e, ...data };
-    //     } else {
-    //       return e;
-    //     }
-    //   })
-    // );
-    //setCurrency(newCurrency);
-
-    //TODO POST Request /currencies/ !!!!!!!!!!!!!
-
+    //POST Request /currencies
+    const res = await fetch(`/api/v1/currencies`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCurrency),
+    });
+    if (!res.ok) {
+      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      return;
+    }
+    const data = await res.json();
+    //Update setCurrency state with new currency
+    setCurrency([data, ...currency]);
     //Set isNew state to false - close view for create currency
     setIsNewCurrency(false);
   };
