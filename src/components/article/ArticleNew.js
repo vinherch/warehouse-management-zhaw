@@ -10,12 +10,12 @@ function ArticleNew() {
   /* States */
   /* State for article description text input - local state */
   const [currentArticleDescription, setCurrentArticleDescription] = useState("");
-  /* State for selected currency - local state */
-  const [currentCurrency, setCurrentCurrency] = useState({});
-  /* State for selected category - local state */
-  const [currentCategory, setCurrentCategory] = useState({});
-  /* State for selected status - local state */
-  const [currentStatus, setCurrentStatus] = useState({});
+  /* State for selected currency. Default value, if nothing has been choosen from dropdown is set to the first position of currencies array - local state */
+  const [currentCurrency, setCurrentCurrency] = useState([currency[0]]);
+  /* State for selected category. Default value, if nothing has been choosen from dropdown is set to the first position of categories array - local state */
+  const [currentCategory, setCurrentCategory] = useState([category[0]]);
+  /* State for selected status. Default value, if nothing has been choosen from dropdown is set to the first position of status array - local state */
+  const [currentStatus, setCurrentStatus] = useState([status[0]]);
   /* State for selected amount - local state */
   const [currentAmount, setCurrentAmount] = useState(0);
   /* State for ButtonAddArticle - toggling enable/disable - local state */
@@ -58,9 +58,8 @@ function ArticleNew() {
             name="currency-select"
             id="currency-select"
             onClick={(e) => {
-              const selectedCurrency = currency.filter((c) => e.target.value === c.currencyCode);
               //Set selected currency in local currency state
-              setCurrentCurrency({ id: selectedCurrency[0].id, currencyCode: selectedCurrency[0].currencyCode, country: selectedCurrency[0].country });
+              setCurrentCurrency(currency.filter((c) => e.target.value === c.currencyCode));
             }}
           >
             {currency.map((e) => (
@@ -77,9 +76,8 @@ function ArticleNew() {
             name="category-select"
             id="category-select"
             onClick={(e) => {
-              const selectedCategory = category.filter((c) => e.target.value === c.description);
-              //Set selected category in local currency state
-              setCurrentCategory({ id: selectedCategory[0].id, description: selectedCategory[0].description });
+              //Set selected category in local category state
+              setCurrentCategory(category.filter((c) => e.target.value === c.description));
             }}
           >
             {category.map((e) => (
@@ -96,9 +94,8 @@ function ArticleNew() {
             name="status-select"
             id="status-select"
             onClick={(e) => {
-              const selectedStatus = status.filter((s) => e.target.value === s.description);
               //Set selected status in local status state
-              setCurrentStatus({ id: selectedStatus[0].id, description: selectedStatus[0].description });
+              setCurrentStatus(status.filter((s) => e.target.value === s.description));
             }}
           >
             {status.map((e) => (
@@ -121,7 +118,14 @@ function ArticleNew() {
           />
         </div>
         {/* Passing local props currentArticleDescription, currentCurrency, currentCategory, currentStatus, currentAmount to ButtonAddArticle */}
-        <ButtonAddArticle isDisabled={isDisabled} articleDescription={currentArticleDescription} currency={currentCurrency} category={currentCategory} status={currentStatus} amount={currentAmount} />
+        <ButtonAddArticle
+          isDisabled={isDisabled}
+          articleDescription={currentArticleDescription}
+          currency={{ id: currentCurrency[0].id, country: currentCurrency[0].country, currencyCode: currentCurrency[0].currencyCode }}
+          category={{ id: currentCategory[0].id, description: currentCategory[0].description }}
+          status={{ id: currentStatus[0].id, description: currentStatus[0].description }}
+          amount={currentAmount}
+        />
       </div>
     </div>
   );

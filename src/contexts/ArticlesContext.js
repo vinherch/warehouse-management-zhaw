@@ -15,21 +15,23 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
 
   //Operations for Article Management
   //Create new Article
-  const addArticle = (newArticle) => {
-    //Update setArticle state with new article (TODO : receive new ID from API - not yet implemented)
-    // setArticle(
-    //   article.map((e) => {
-    //     if (e.id === data.id) {
-    //       return { ...e, ...data };
-    //     } else {
-    //       return e;
-    //     }
-    //   })
-    // );
-    //setArticle(newArticle);
-
-    //TODO POST Request /articles/ !!!!!!!!!!!!!
-
+  const addArticle = async (newArticle) => {
+    //POST Request /articles/
+    const res = await fetch(`/api/v1/articles`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newArticle),
+    });
+    if (!res.ok) {
+      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      return;
+    }
+    const data = await res.json();
+    //Update setArticle state with new article
+    setArticle([data, ...article]);
+    console.log(data);
     //Set isNew state to false - close view for create article
     setIsNewArticle(false);
   };
