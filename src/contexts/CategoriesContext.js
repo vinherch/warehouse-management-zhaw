@@ -16,20 +16,21 @@ export const CategoriesProvider = ({ children, category, setCategory, setIsError
   //Operations for Category Management
   //Create new Category
   const addCategory = async (newCategory) => {
-    //Update setCategory state with new category (TODO : receive new ID from API - not yet implemented)
-    // setCategory(
-    //   category.map((e) => {
-    //     if (e.id === data.id) {
-    //       return { ...e, ...data };
-    //     } else {
-    //       return e;
-    //     }
-    //   })
-    // );
-    //setCategory(newCategory);
-
-    //TODO POST Request /categories/ !!!!!!!!!!!!!
-
+    //POST Request /categories
+    const res = await fetch(`/api/v1/categories`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCategory),
+    });
+    if (!res.ok) {
+      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      return;
+    }
+    const data = await res.json();
+    //Update setCategory state with new category
+    setCategory([data, ...category]);
     //Set isNew state to false - close view for create category
     setIsNewCategory(false);
   };
