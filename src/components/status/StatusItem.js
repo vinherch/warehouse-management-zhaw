@@ -1,15 +1,36 @@
 import React from "react";
-// import ButtonEdit from "./shared/ButtonUpdate";
-// import ButtonDelete from "./shared/ButtonDelete";
+import { useContext } from "react";
+import { FaEdit, FaTimes } from "react-icons/fa";
+import StatusContext from "../../contexts/StatusContext";
 
-function StatusItem() {
+function StatusItem({ item }) {
+  const { isEdit, setIsEdit, setSelectedStatus, deleteStatus } = useContext(StatusContext);
+
   return (
     <tr>
-      <td>Value ID</td>
-      <td>Value description</td>
+      <td>{item.id}</td>
+      <td>{item.description}</td>
       <td style={{ padding: "0 0.7rem" }}>
-        {/* <ButtonEdit />
-        <ButtonDelete /> */}
+        <button
+          className="btn-edit"
+          onClick={() => {
+            /* Toggle Edit View */
+            setIsEdit(!isEdit);
+            /*Set status item as selected in context state */
+            setSelectedStatus(item);
+          }}
+        >
+          <FaEdit color="black" />
+        </button>
+        <button
+          className="btn-delete"
+          onClick={() => {
+            //on Click - Call delete function from status context
+            deleteStatus(item);
+          }}
+        >
+          <FaTimes color="red" />
+        </button>
       </td>
     </tr>
   );

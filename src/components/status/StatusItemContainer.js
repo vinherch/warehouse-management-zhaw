@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import StatusItem from "./StatusItem";
-// import ButtonNew from "./shared/ButtonNew";
+import ButtonCreateStatus from "./ButtonCreateStatus";
+import StatusContext from "../../contexts/StatusContext";
+import StatusEdit from "./StatusEdit";
+import StatusNew from "./StatusNew";
 
 function StatusItemContainer() {
+  //useContext - Get status data / state from context
+  const { isEdit, isNewStatus, setIsNewStatus, status } = useContext(StatusContext);
+
   return (
     <div className="item-container">
-      <div className="item-container-header">{/* <ButtonNew>Status erfassen</ButtonNew> */}</div>
+      <div className="item-container-header">
+        <ButtonCreateStatus setIsNewStatus={setIsNewStatus} isNewStatus={isNewStatus}>
+          Status erfassen
+        </ButtonCreateStatus>
+      </div>
+      {isEdit && <StatusEdit />}
+      {isNewStatus && <StatusNew />}
       <div className="item-container-content">
         <table>
           <thead>
@@ -16,9 +28,9 @@ function StatusItemContainer() {
             </tr>
           </thead>
           <tbody>
-            <StatusItem />
-            <StatusItem />
-            <StatusItem />
+            {status.map((e) => (
+              <StatusItem item={e} key={e.id} />
+            ))}
           </tbody>
         </table>
       </div>
