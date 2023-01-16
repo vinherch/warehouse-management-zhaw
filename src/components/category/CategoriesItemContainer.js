@@ -23,7 +23,7 @@ function CategoriesItemContainer() {
           <thead>
             <tr>
               <th>ID</th>
-              <td>Beschreibung</td>
+              <th>Beschreibung</th>
               <td></td>
             </tr>
           </thead>

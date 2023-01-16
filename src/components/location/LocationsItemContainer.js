@@ -23,9 +23,9 @@ function LocationsItemContainer() {
           <thead>
             <tr>
               <th>ID</th>
-              <td>Gang</td>
-              <td>Regal Nr.</td>
-              <td>Fach Nr.</td>
+              <th>Gang</th>
+              <th>Regal Nr.</th>
+              <th>Fach Nr.</th>
               <td></td>
             </tr>
           </thead>

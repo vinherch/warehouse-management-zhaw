@@ -23,8 +23,8 @@ function CurrencyItemContainer() {
           <thead>
             <tr>
               <th>ID</th>
-              <td>Währungscode</td>
-              <td>Land</td>
+              <th>Währungscode</th>
+              <th>Land</th>
               <td></td>
             </tr>
           </thead>

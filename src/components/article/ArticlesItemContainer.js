@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useContext } from "react";
 import ArticleItem from "./ArticleItem";
 import ButtonCreateArticle from "./ButtonCreateArticle";
@@ -24,11 +24,11 @@ function ArticlesItemContainer() {
           <thead>
             <tr>
               <th>ID</th>
-              <td>Beschreibung</td>
-              <td>Kategorien</td>
-              <td>Währung</td>
-              <td>Wert</td>
-              <td>Status</td>
+              <th>Beschreibung</th>
+              <th>Kategorien</th>
+              <th>Währung</th>
+              <th>Wert</th>
+              <th>Status</th>
               <td></td>
             </tr>
           </thead>
