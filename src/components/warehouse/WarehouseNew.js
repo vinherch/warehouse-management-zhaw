@@ -39,72 +39,74 @@ function WarehouseNew() {
                 </option>
               ))}
             </select>
-            {/* Readonly text input for category, currency, status of selected article */}
-            <div>
-              <label htmlFor="article-category-description">Kategorie: </label>
-              <input type="text" readOnly={true} id="article-category-description" className="read-only" value={currentArticle[0].category.description} />
-            </div>
-            {/* Readonly text input for category, currency, status of selected article */}
-            <div>
-              <label htmlFor="article-currencycode">Währung: </label>
-              <input type="text" readOnly={true} id="article-currencycode" className="read-only" value={currentArticle[0].currency.currencyCode} />
-            </div>
-            {/* Readonly text input for category, currency, status of selected article */}
-            <div>
-              <label htmlFor="article-status">Status: </label>
-              <input type="text" readOnly={true} id="article-status" className="read-only" value={currentArticle[0].status.description} />
-            </div>
-            <div>
-              <label htmlFor="location">Lokations ID: </label>
-              <select
-                name="location"
-                id="location"
-                onClick={(e) => {
-                  //Set selected location in local location state
-                  const selection = location.filter((l) => +e.target.value === l.id);
-                  setCurrentLocation(selection);
-                }}
-              >
-                {location.map((e) => (
-                  <option value={e.id} key={e.id}>
-                    {e.id}
-                  </option>
-                ))}
-              </select>
-              {/* Readonly text input for aisle, shelf, tray - of selected locaton object */}
-              <div>
-                <label htmlFor="location-aisle">Gang: </label>
-                <input type="text" readOnly={true} id="location-aisle" className="read-only" value={currentLocation[0].aisle} />
-              </div>
-              {/* Readonly text input for aisle, shelf, tray - of selected locaton object */}
-              <div>
-                <label htmlFor="location-shelf">Regal: </label>
-                <input type="text" readOnly={true} id="location-shelf" className="read-only" value={currentLocation[0].shelf} />
-              </div>
-              {/* Readonly text input for aisle, shelf, tray - of selected locaton object */}
-              <div>
-                <label htmlFor="location-tray">Fach: </label>
-                <input type="text" readOnly={true} id="location-tray" className="read-only" value={currentLocation[0].tray} />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="quantity">Menge: </label>
-              <input
-                type="number"
-                id="quantity"
-                value={currentArticleQuantity}
-                onChange={(e) => {
-                  //Check if text input length is not 0
-                  if (e.target.value.trim().length !== 0) {
-                    setIsDisabled(false);
-                  } else {
-                    setIsDisabled(true);
-                  }
-                  setCurrentArticleQuantity(e.target.value);
-                }}
-              />
-            </div>
           </div>
+          {/* Readonly text input for category, currency, status of selected article */}
+          <div>
+            <label htmlFor="article-category-description">Kategorie: </label>
+            <input type="text" readOnly={true} id="article-category-description" className="read-only" value={currentArticle[0].category.description} />
+          </div>
+          {/* Readonly text input for category, currency, status of selected article */}
+          <div>
+            <label htmlFor="article-currencycode">Währung: </label>
+            <input type="text" readOnly={true} id="article-currencycode" className="read-only" value={currentArticle[0].currency.currencyCode} />
+          </div>
+          {/* Readonly text input for category, currency, status of selected article */}
+          <div>
+            <label htmlFor="article-status">Status: </label>
+            <input type="text" readOnly={true} id="article-status" className="read-only" value={currentArticle[0].status.description} />
+          </div>
+          <div>
+            <label htmlFor="location">Lokations ID: </label>
+            <select
+              name="location"
+              id="location"
+              onClick={(e) => {
+                //Set selected location in local location state
+                const selection = location.filter((l) => +e.target.value === l.id);
+                setCurrentLocation(selection);
+              }}
+            >
+              {location.map((e) => (
+                <option value={e.id} key={e.id}>
+                  {e.id}
+                </option>
+              ))}
+            </select>
+          </div>
+          {/* Readonly text input for aisle, shelf, tray - of selected locaton object */}
+          <div>
+            <label htmlFor="location-aisle">Gang: </label>
+            <input type="text" readOnly={true} id="location-aisle" className="read-only" value={currentLocation[0].aisle} />
+          </div>
+          {/* Readonly text input for aisle, shelf, tray - of selected locaton object */}
+          <div>
+            <label htmlFor="location-shelf">Regal: </label>
+            <input type="text" readOnly={true} id="location-shelf" className="read-only" value={currentLocation[0].shelf} />
+          </div>
+          {/* Readonly text input for aisle, shelf, tray - of selected locaton object */}
+          <div>
+            <label htmlFor="location-tray">Fach: </label>
+            <input type="text" readOnly={true} id="location-tray" className="read-only" value={currentLocation[0].tray} />
+          </div>
+
+          <div>
+            <label htmlFor="quantity">Menge: </label>
+            <input
+              type="number"
+              id="quantity"
+              value={currentArticleQuantity}
+              onChange={(e) => {
+                //Check if text input length is not 0
+                if (e.target.value.trim().length !== 0) {
+                  setIsDisabled(false);
+                } else {
+                  setIsDisabled(true);
+                }
+                setCurrentArticleQuantity(e.target.value);
+              }}
+            />
+          </div>
+
           <button
             className={`btn-add ${isDisabled && "btn-disabled"}`}
             onClick={(e) => {
