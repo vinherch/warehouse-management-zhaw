@@ -69,7 +69,7 @@ function WarehouseEdit() {
               value={currentArticleQuantity}
               onChange={(e) => {
                 //Check if text input length is not 0
-                if (e.target.value.trim().length != 0) {
+                if (e.target.value.trim().length !== 0) {
                   setIsDisabled(false);
                 } else {
                   setIsDisabled(true);

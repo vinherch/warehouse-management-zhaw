@@ -42,17 +42,17 @@ function WarehouseNew() {
             {/* Readonly text input for category, currency, status of selected article */}
             <div>
               <label htmlFor="article-category-description">Kategorie: </label>
-              <input type="text" readOnly={true} id="article-category-description" value={currentArticle[0].category.description} />
+              <input type="text" readOnly={true} id="article-category-description" className="read-only" value={currentArticle[0].category.description} />
             </div>
             {/* Readonly text input for category, currency, status of selected article */}
             <div>
               <label htmlFor="article-currencycode">Währung: </label>
-              <input type="text" readOnly={true} id="article-currencycode" value={currentArticle[0].currency.currencyCode} />
+              <input type="text" readOnly={true} id="article-currencycode" className="read-only" value={currentArticle[0].currency.currencyCode} />
             </div>
             {/* Readonly text input for category, currency, status of selected article */}
             <div>
               <label htmlFor="article-status">Status: </label>
-              <input type="text" readOnly={true} id="article-status" value={currentArticle[0].status.description} />
+              <input type="text" readOnly={true} id="article-status" className="read-only" value={currentArticle[0].status.description} />
             </div>
             <div>
               <label htmlFor="location">Lokations ID: </label>
@@ -74,17 +74,17 @@ function WarehouseNew() {
               {/* Readonly text input for aisle, shelf, tray - of selected locaton object */}
               <div>
                 <label htmlFor="location-aisle">Gang: </label>
-                <input type="text" readOnly={true} id="location-aisle" value={currentLocation[0].aisle} />
+                <input type="text" readOnly={true} id="location-aisle" className="read-only" value={currentLocation[0].aisle} />
               </div>
               {/* Readonly text input for aisle, shelf, tray - of selected locaton object */}
               <div>
                 <label htmlFor="location-shelf">Regal: </label>
-                <input type="text" readOnly={true} id="location-shelf" value={currentLocation[0].shelf} />
+                <input type="text" readOnly={true} id="location-shelf" className="read-only" value={currentLocation[0].shelf} />
               </div>
               {/* Readonly text input for aisle, shelf, tray - of selected locaton object */}
               <div>
                 <label htmlFor="location-tray">Fach: </label>
-                <input type="text" readOnly={true} id="location-tray" value={currentLocation[0].tray} />
+                <input type="text" readOnly={true} id="location-tray" className="read-only" value={currentLocation[0].tray} />
               </div>
             </div>
             <div>
@@ -95,7 +95,7 @@ function WarehouseNew() {
                 value={currentArticleQuantity}
                 onChange={(e) => {
                   //Check if text input length is not 0
-                  if (e.target.value.trim().length != 0) {
+                  if (e.target.value.trim().length !== 0) {
                     setIsDisabled(false);
                   } else {
                     setIsDisabled(true);
