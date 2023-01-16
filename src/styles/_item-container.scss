@@ -4,6 +4,11 @@
 
 .item-container {
   padding: 5rem 7rem;
+  overflow-y: scroll;
+  height: 75vh;
+  max-width: 200rem;
+  margin-left: auto;
+  margin-right: auto;
 
   h4 {
     font-size: 2rem;
@@ -11,15 +16,70 @@
 }
 
 .item-container-header {
-  height: 8rem;
+  height: 10rem;
   display: flex;
+  align-items: center;
 }
 
-.btn-new {
+.create-edit-container {
+  border: 1px solid rgb(203, 203, 203);
+  min-height: 15rem;
+  padding: 2rem;
+  margin: 1rem 0rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+  .edit-title {
+    margin-right: auto;
+    font-size: 1.7rem;
+    color: globals.$clr-fnt-common;
+    margin-bottom: 1rem;
+  }
+  form {
+    width: 100%;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    width: 100%;
+    * {
+      margin: 1rem 0rem;
+    }
+    label {
+      padding-right: 1rem;
+      width: 15%;
+    }
+    input {
+      width: 100%;
+      height: 2.5rem;
+      padding: 2rem 1rem;
+      border: none;
+      border-radius: 0.2rem;
+      outline: 1px solid grey;
+      &:focus {
+        outline: 2px solid rgb(78, 207, 203);
+      }
+    }
+
+    select {
+      width: 100%;
+      height: 4rem;
+      border-radius: 0.2rem;
+      &:focus {
+        outline: 2px solid rgb(78, 207, 203);
+      }
+    }
+  }
+}
+
+.btn-new,
+.btn-email {
   border: 1px solid rgb(79, 79, 79);
-  height: 50%;
-  margin-top: auto;
-  margin-bottom: auto;
+  height: 4.5rem;
   box-shadow: 2px 2px 5px rgb(146, 146, 146);
   border-radius: 0.8rem;
   padding: 1.2rem 5rem;
@@ -39,14 +99,19 @@
   max-height: 60vh;
   overflow: hidden;
   overflow-y: scroll;
+  position: relative;
 
   table {
     width: 100%;
     border-spacing: 0;
     th,
     td {
-      padding: 1rem 0rem 1rem 0.5rem;
+      padding: 1rem 0.5rem 1rem 0.5rem;
       border: 1px solid rgb(203, 203, 203);
+      &:focus {
+        outline: none;
+        background-color: rgba(162, 255, 162, 0.779);
+      }
     }
 
     tbody {
@@ -62,12 +127,16 @@
 
     thead {
       background-color: rgb(225, 225, 225);
+      position: sticky;
+      top: 0;
     }
   }
 }
 
 .btn-edit,
-.btn-delete {
+.btn-update,
+.btn-delete,
+.btn-add {
   width: 100%;
   margin: 0.3rem 0rem;
   height: 3rem;
@@ -78,28 +147,68 @@
   padding: 0rem 1rem;
   transition: scale 350ms ease;
   &:hover {
-    background-color: rgb(250, 250, 126);
+    background-color: rgb(126, 250, 139);
     scale: 1.02;
   }
+}
+
+.btn-edit,
+.btn-delete {
+  margin-right: 0.3rem;
+}
+
+.btn-disabled {
+  background-color: rgb(124, 124, 124);
+  &:hover {
+    background-color: rgb(223, 48, 48);
+    scale: 1.02;
+  }
+}
+
+.btn-update {
+  margin: 2rem 0rem;
+}
+
+.btn-edit:hover {
+  background-color: rgba(255, 255, 0, 0.82);
 }
 
 .btn-delete:hover {
   background-color: rgba(255, 0, 0, 0.42);
 }
 
+.read-only {
+  color: rgb(165, 165, 165);
+}
+
+.btn-container {
+  display: flex;
+  width: 100%;
+  div:nth-child(2) {
+    justify-content: flex-end;
+  }
+}
+
+.btn-container > * {
+  flex: 1;
+  display: flex;
+}
+
 @media screen and (max-width: 1110px) {
   /* Styles Mobile View */
 
   .item-container {
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
   }
 
   .item-container-content {
     font-size: 1.2rem;
     overflow-x: scroll;
+    margin-top: 1rem;
   }
 
-  .btn-new {
+  .btn-new,
+  .btn-warehouse {
     width: 95%;
     margin: auto;
     &:hover {
@@ -107,8 +216,27 @@
     }
   }
 
+  .btn-email {
+    height: 2.7rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .btn-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
   .btn-edit,
   .btn-delete {
     padding: 0rem 0.5rem;
+  }
+
+  .create-edit-container div {
+    flex-direction: column;
+    align-items: flex-start;
+    label {
+      margin: 0.5rem 0 0 0;
+    }
   }
 }

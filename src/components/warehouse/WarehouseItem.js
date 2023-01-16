@@ -18,7 +18,7 @@ function WarehouseItem({ item }) {
       <td>{item.location.shelf}</td>
       <td>{item.location.tray}</td>
       <td>{item.quantity}</td>
-      <td style={{ padding: "0 0.7rem" }}>
+      <td style={{ padding: "0.5rem 0.8rem" }}>
         <button
           className="btn-edit"
           onClick={() => {

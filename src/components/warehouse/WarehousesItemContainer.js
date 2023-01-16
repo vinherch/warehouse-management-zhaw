@@ -12,9 +12,16 @@ function WarehousesItemContainer() {
   return (
     <div className="item-container">
       <div className="item-container-header">
-        <ButtonCreateWarehouse setIsNewWarehouse={setIsNewWarehouse} isNewWarehouse={isNewWarehouse}>
-          Neue Position erfassen
-        </ButtonCreateWarehouse>
+        <div className="btn-container">
+          <div>
+            <ButtonCreateWarehouse setIsNewWarehouse={setIsNewWarehouse} isNewWarehouse={isNewWarehouse}>
+              Neue Position erfassen
+            </ButtonCreateWarehouse>
+          </div>
+          <div>
+            <button className="btn-email btn-warehouse">Sende E-Mail Bestellung</button>
+          </div>
+        </div>
       </div>
       {isEdit && <WarehouseEdit />}
       {isNewWarehouse && <WarehouseNew />}

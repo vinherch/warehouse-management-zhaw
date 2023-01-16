@@ -10,7 +10,7 @@ function StatusItem({ item }) {
     <tr>
       <td>{item.id}</td>
       <td>{item.description}</td>
-      <td style={{ padding: "0 0.7rem" }}>
+      <td style={{ padding: "0.5rem 0.8rem" }}>
         <button
           className="btn-edit"
           onClick={() => {

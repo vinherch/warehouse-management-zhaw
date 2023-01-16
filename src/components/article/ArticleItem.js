@@ -11,7 +11,7 @@ function ArticleItem({ item, isEdit, setIsEdit }) {
       <td>{item.currency.currencyCode}</td>
       <td>{item.amount}</td>
       <td>{item.status.description}</td>
-      <td style={{ padding: "0 0.7rem" }}>
+      <td style={{ padding: "0.5rem 0.8rem" }}>
         <ButtonEditArticle isEdit={isEdit} setIsEdit={setIsEdit} article={item} />
         <ButtonDeleteArticle item={item} />
       </td>

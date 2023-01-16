@@ -12,7 +12,7 @@ function LocationItem({ item }) {
       <td>{item.aisle}</td>
       <td>{item.shelf}</td>
       <td>{item.tray}</td>
-      <td style={{ padding: "0 0.7rem" }}>
+      <td style={{ padding: "0.5rem 0.8rem" }}>
         <button
           className="btn-edit"
           onClick={() => {
