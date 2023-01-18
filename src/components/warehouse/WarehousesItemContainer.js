@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import WarehouseItem from "./WarehouseItem";
 import WarehousesContext from "../../contexts/WarehousesContext";
 import WarehouseEdit from "./WarehouseEdit";
@@ -7,7 +7,7 @@ import ButtonCreateWarehouse from "./ButtonCreateWarehouse";
 
 function WarehousesItemContainer() {
   //useContext - Get warehouse data / States from context
-  const { isEdit, isNewWarehouse, setIsNewWarehouse, warehouse } = useContext(WarehousesContext);
+  const { isEdit, isNewWarehouse, setIsNewWarehouse, warehouse, sendEmail } = useContext(WarehousesContext);
 
   return (
     <div className="item-container">
@@ -19,7 +19,14 @@ function WarehousesItemContainer() {
             </ButtonCreateWarehouse>
           </div>
           <div>
-            <button className="btn-email btn-warehouse">Sende E-Mail Bestellung</button>
+            <button
+              className="btn-email btn-warehouse"
+              onClick={() => {
+                sendEmail();
+              }}
+            >
+              Sende E-Mail Bestellung
+            </button>
           </div>
         </div>
       </div>

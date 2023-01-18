@@ -83,8 +83,20 @@ export const WarehousesProvider = ({ children, warehouse, setWarehouse, article,
     setSelectedWarehouseEntry({});
   };
 
+  //Send E-Mail from - Send Mail Button in Warehouse
+  const sendEmail = async () => {
+    const res = await fetch("/api/v1/mail", {
+      method: "POST",
+    });
+    if (!res.ok) {
+      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+    }
+  };
+
   return (
-    <WarehousesContext.Provider value={{ warehouse, addWarehouse, deleteWarehouse, updateWarehouse, setWarehouse, article, location, selectedWarehouseEntry, setSelectedWarehouseEntry, isNewWarehouse, setIsNewWarehouse, isEdit, setIsEdit }}>
+    <WarehousesContext.Provider
+      value={{ warehouse, addWarehouse, deleteWarehouse, updateWarehouse, setWarehouse, article, location, selectedWarehouseEntry, setSelectedWarehouseEntry, isNewWarehouse, setIsNewWarehouse, isEdit, setIsEdit, sendEmail }}
+    >
       {children}
     </WarehousesContext.Provider>
   );
