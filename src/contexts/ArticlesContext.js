@@ -31,7 +31,6 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
     const data = await res.json();
     //Update setArticle state with new article
     setArticle([data, ...article]);
-    console.log(data);
     //Set isNew state to false - close view for create article
     setIsNewArticle(false);
   };
@@ -59,17 +58,6 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
 
   //Update existing Article
   const updateArticle = async (data) => {
-    //Update article state (setArticle in App Component)
-    setArticle(
-      article.map((e) => {
-        if (e.id === data.id) {
-          return { ...e, ...data };
-        } else {
-          return e;
-        }
-      })
-    );
-
     //PUT Request /articles/:id to update article
     const res = await fetch(`/api/v1/articles/${data.id}`, {
       method: "PUT",
@@ -81,6 +69,16 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
     if (!res.ok) {
       setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
     }
+    //Update article state (setArticle in App Component)
+    setArticle(
+      article.map((e) => {
+        if (e.id === data.id) {
+          return { ...e, ...data };
+        } else {
+          return e;
+        }
+      })
+    );
     //set setIsEdit state to false after update
     setIsEdit(false);
     //SetSelectedArticle state will be set to {} after uppdate
