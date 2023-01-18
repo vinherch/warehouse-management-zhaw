@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard";
 import Footer from "./components/Footer";
 import ASide from "./components/ASide";
 import ErrorMessage from "./components/shared/ErrorMessage";
+import ErrorRoute from "./components/shared/ErrorRoute";
 import LoadingSpinner from "./components/shared/LoadingSpinner";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -246,6 +247,9 @@ function App() {
             </>
           }
         />
+      </Routes>
+      <Routes>
+        <Route path={"/*"} element={<ErrorRoute />} />
       </Routes>
     </Router>
   );
