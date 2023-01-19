@@ -50,6 +50,9 @@ function App() {
   /* State for Error Control */
   const [isError, setIsError] = useState({ status: false, error: 0 });
 
+  /* Header Title - Depending on route */
+  const [headerTitle, setHeaderTitle] = useState("Test");
+
   /* useEffect - Initial Loading of all component data when the pages loads -
    HTTP GET Request - /articles, /categories, /currencies, /locations, /status, /warehouses d*/
   useEffect(() => {
@@ -156,7 +159,7 @@ function App() {
     <LoadingSpinner />
   ) : (
     <Router>
-      <Header aSideMenueHandler={asideMenueHandler} asideMenueState={asideMenueState} />
+      <Header aSideMenueHandler={asideMenueHandler} asideMenueState={asideMenueState} headerTitle={headerTitle} />
       <Footer />
       <Routes>
         <Route
@@ -164,7 +167,7 @@ function App() {
           exact
           element={
             <>
-              <Dashboard />
+              <Dashboard setHeaderTitle={setHeaderTitle} />
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>
           }
@@ -176,7 +179,7 @@ function App() {
           element={
             <>
               <ArticlesProvider setIsError={setIsError} article={article} setArticle={setArticle} status={status} category={category} currency={currency}>
-                <Articles setAsideMenueState={setAsideMenueState} />
+                <Articles setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} />
               </ArticlesProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>
@@ -189,7 +192,7 @@ function App() {
           element={
             <>
               <CategoriesProvider category={category} setCategory={setCategory} setIsError={setIsError}>
-                <Categories setAsideMenueState={setAsideMenueState} />
+                <Categories setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} />
               </CategoriesProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>
@@ -202,7 +205,7 @@ function App() {
           element={
             <>
               <CurrenciesProvider currency={currency} setCurrency={setCurrency} setIsError={setIsError}>
-                <Currencies setAsideMenueState={setAsideMenueState} />
+                <Currencies setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} />
               </CurrenciesProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>
@@ -215,7 +218,7 @@ function App() {
           element={
             <>
               <LocationsProvider location={location} setLocation={setLocation} setIsError={setIsError}>
-                <Locations setAsideMenueState={setAsideMenueState} />
+                <Locations setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} />
               </LocationsProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>
@@ -228,7 +231,7 @@ function App() {
           element={
             <>
               <StatusProvider status={status} setStatus={setStatus} setIsError={setIsError}>
-                <Status setAsideMenueState={setAsideMenueState} />
+                <Status setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} />
               </StatusProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>
@@ -241,7 +244,7 @@ function App() {
           element={
             <>
               <WarehousesProvider warehouse={warehouse} setWarehouse={setWarehouse} article={article} location={location} setIsError={setIsError}>
-                <Warehouses setAsideMenueState={setAsideMenueState} />
+                <Warehouses setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} />
               </WarehousesProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>

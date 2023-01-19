@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import DashboardCard from "./shared/DashboardCard";
 
-function Dashboard() {
+function Dashboard({ setHeaderTitle }) {
+  useEffect(() => {
+    setHeaderTitle("Dashboard");
+  }, []);
+
   return (
     <div className="container">
       <Link to="/articles" style={{ textDecoration: "none" }}>
