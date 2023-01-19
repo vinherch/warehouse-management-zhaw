@@ -4,10 +4,11 @@ import WarehousesContext from "../../contexts/WarehousesContext";
 import WarehouseEdit from "./WarehouseEdit";
 import WarehouseNew from "./WarehouseNew";
 import ButtonCreateWarehouse from "./ButtonCreateWarehouse";
+import Alert from "../shared/Alert";
 
 function WarehousesItemContainer() {
   //useContext - Get warehouse data / States from context
-  const { isEdit, isNewWarehouse, setIsNewWarehouse, warehouse, sendEmail } = useContext(WarehousesContext);
+  const { isEdit, isNewWarehouse, setIsNewWarehouse, warehouse, sendEmail, isAlert } = useContext(WarehousesContext);
 
   return (
     <div className="item-container">
@@ -32,6 +33,7 @@ function WarehousesItemContainer() {
       </div>
       {isEdit && <WarehouseEdit />}
       {isNewWarehouse && <WarehouseNew />}
+      {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
       <div className="item-container-content">
         <table>
           <thead>

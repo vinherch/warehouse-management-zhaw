@@ -4,10 +4,11 @@ import ButtonCreateCurrency from "./ButtonCreateCurrency";
 import CurrenciesContext from "../../contexts/CurrenciesContext";
 import CurrencyEdit from "./CurrencyEdit";
 import CurrencyNew from "./CurrencyNew";
+import Alert from "../shared/Alert";
 
 function CurrencyItemContainer() {
   //useContext - Get Currencies Data / State from context
-  const { isEdit, isNewCurrency, setIsNewCurrency, currency } = useContext(CurrenciesContext);
+  const { isEdit, isNewCurrency, setIsNewCurrency, currency, isAlert } = useContext(CurrenciesContext);
 
   return (
     <div className="item-container">
@@ -18,6 +19,7 @@ function CurrencyItemContainer() {
       </div>
       {isEdit && <CurrencyEdit />}
       {isNewCurrency && <CurrencyNew />}
+      {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
       <div className="item-container-content">
         <table>
           <thead>

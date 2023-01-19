@@ -4,10 +4,11 @@ import ButtonCreateStatus from "./ButtonCreateStatus";
 import StatusContext from "../../contexts/StatusContext";
 import StatusEdit from "./StatusEdit";
 import StatusNew from "./StatusNew";
+import Alert from "../shared/Alert";
 
 function StatusItemContainer() {
   //useContext - Get status data / state from context
-  const { isEdit, isNewStatus, setIsNewStatus, status } = useContext(StatusContext);
+  const { isEdit, isNewStatus, setIsNewStatus, status, isAlert } = useContext(StatusContext);
 
   return (
     <div className="item-container">
@@ -18,6 +19,7 @@ function StatusItemContainer() {
       </div>
       {isEdit && <StatusEdit />}
       {isNewStatus && <StatusNew />}
+      {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
       <div className="item-container-content">
         <table>
           <thead>

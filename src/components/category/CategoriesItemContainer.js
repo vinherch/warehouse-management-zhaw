@@ -4,10 +4,11 @@ import ButtonCreateCategory from "./ButtonCreateCategory";
 import CategoriesContext from "../../contexts/CategoriesContext";
 import CategoryEdit from "./CategoryEdit";
 import CategoryNew from "./CategoryNew";
+import Alert from "../shared/Alert";
 
 function CategoriesItemContainer() {
   //useContext - Get Categories Data / State from context
-  const { isEdit, isNewCategory, setIsNewCategory, category } = useContext(CategoriesContext);
+  const { isEdit, isNewCategory, setIsNewCategory, category, isAlert } = useContext(CategoriesContext);
 
   return (
     <div className="item-container">
@@ -18,6 +19,7 @@ function CategoriesItemContainer() {
       </div>
       {isEdit && <CategoryEdit />}
       {isNewCategory && <CategoryNew />}
+      {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
       <div className="item-container-content">
         <table>
           <thead>

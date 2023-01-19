@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const CategoriesContext = createContext();
 
-export const CategoriesProvider = ({ children, category, setCategory, setIsError }) => {
+export const CategoriesProvider = ({ children, category, setCategory, setIsError, isAlert, setIsAlert }) => {
   /* States */
   //State for checking which category is selected in the UI - Category Container
   const [selectedCategory, setSelectedCategory] = useState({});
@@ -66,6 +66,23 @@ export const CategoriesProvider = ({ children, category, setCategory, setIsError
 
   //Delete existing category
   const deleteCategory = async (data) => {
+    /*Reset alert state */
+    setIsAlert({ status: false, msg: "", statusText: "" });
+    /*Reset alert state */
+    setIsAlert({ status: false, msg: "", statusText: "" });
+    //DELETE Request /categories/:id to delete category
+    const res = await fetch(`/api/v1/categories/${data.id}`, {
+      method: "DELETE",
+    });
+    if (res.status === 500) {
+      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      return;
+    }
+    if (res.status === 400) {
+      //Set alert state to true
+      setIsAlert({ status: true, statusText: res.statusText, msg: "Operation nicht möglich!" });
+      return;
+    }
     //Update category state (setCategory in App Component)
     setCategory(
       category.filter((e) => {
@@ -74,20 +91,26 @@ export const CategoriesProvider = ({ children, category, setCategory, setIsError
         }
       })
     );
-
-    //DELETE Request /categories/:id to delete category
-    const res = await fetch(`/api/v1/categories/${data.id}`, {
-      method: "DELETE",
-    });
-    if (!res.ok) {
-      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
-      return;
-    }
   };
 
   return (
     <CategoriesContext.Provider
-      value={{ category, setCategory, isNewCategory, setIsNewCategory, setIsExistingCategoryDescription, isExistingCategoryDescription, selectedCategory, setSelectedCategory, isEdit, setIsEdit, addCategory, updateCategory, deleteCategory }}
+      value={{
+        category,
+        setCategory,
+        isNewCategory,
+        setIsNewCategory,
+        setIsExistingCategoryDescription,
+        isExistingCategoryDescription,
+        selectedCategory,
+        setSelectedCategory,
+        isEdit,
+        setIsEdit,
+        addCategory,
+        updateCategory,
+        deleteCategory,
+        isAlert,
+      }}
     >
       {children}
     </CategoriesContext.Provider>

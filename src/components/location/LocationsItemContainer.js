@@ -4,10 +4,11 @@ import ButtonCreateLocation from "./ButtonCreateLocation";
 import LocationsContext from "../../contexts/LocationsContext";
 import LocationEdit from "./LocationEdit";
 import LocationNew from "./LocationNew";
+import Alert from "../shared/Alert";
 
 function LocationsItemContainer() {
   //useContext - Get locations data / state from context
-  const { isEdit, isNewLocation, setIsNewLocation, location } = useContext(LocationsContext);
+  const { isEdit, isNewLocation, setIsNewLocation, location, isAlert } = useContext(LocationsContext);
 
   return (
     <div className="item-container">
@@ -18,6 +19,7 @@ function LocationsItemContainer() {
       </div>
       {isEdit && <LocationEdit />}
       {isNewLocation && <LocationNew />}
+      {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
       <div className="item-container-content">
         <table>
           <thead>

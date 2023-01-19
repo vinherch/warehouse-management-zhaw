@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const CurrenciesContext = createContext();
 
-export const CurrenciesProvider = ({ children, currency, setCurrency, setIsError }) => {
+export const CurrenciesProvider = ({ children, currency, setCurrency, setIsError, isAlert, setIsAlert }) => {
   /* States */
   //State for checking which currency is selected in the UI - Currency Container
   const [selectedCurrency, setSelectedCurrency] = useState({});
@@ -69,6 +69,21 @@ export const CurrenciesProvider = ({ children, currency, setCurrency, setIsError
 
   //Delete existing currency
   const deleteCurrency = async (data) => {
+    /*Reset alert state */
+    setIsAlert({ status: false, msg: "", statusText: "" });
+    //DELETE Request /currencies/:id to delete currency
+    const res = await fetch(`/api/v1/currencies/${data.id}`, {
+      method: "DELETE",
+    });
+    if (res.stats === 500) {
+      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      return;
+    }
+    if (res.status === 400) {
+      //Set alert state to true
+      setIsAlert({ status: true, statusText: res.statusText, msg: "Operation nicht möglich!" });
+      return;
+    }
     //Update currency state (setCurrency in App Component)
     setCurrency(
       currency.filter((e) => {
@@ -77,20 +92,11 @@ export const CurrenciesProvider = ({ children, currency, setCurrency, setIsError
         }
       })
     );
-
-    //DELETE Request /currencies/:id to delete currency
-    const res = await fetch(`/api/v1/currencies/${data.id}`, {
-      method: "DELETE",
-    });
-    if (!res.ok) {
-      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
-      return;
-    }
   };
 
   return (
     <CurrenciesContext.Provider
-      value={{ currency, setCurrency, isNewCurrency, setIsNewCurrency, selectedCurrency, setSelectedCurrency, isEdit, setIsEdit, isExistingCurrencyCode, setIsExistingCurrencyCode, addCurrency, updateCurrency, deleteCurrency }}
+      value={{ currency, setCurrency, isNewCurrency, setIsNewCurrency, selectedCurrency, setSelectedCurrency, isEdit, setIsEdit, isExistingCurrencyCode, setIsExistingCurrencyCode, addCurrency, updateCurrency, deleteCurrency, isAlert }}
     >
       {children}
     </CurrenciesContext.Provider>

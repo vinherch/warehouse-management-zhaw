@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const StatusContext = createContext();
 
-export const StatusProvider = ({ children, status, setStatus, setIsError }) => {
+export const StatusProvider = ({ children, status, setStatus, setIsError, isAlert, setIsAlert }) => {
   /* States */
   //State for checking which status is selected in the UI - Status Container
   const [selectedStatus, setSelectedStatus] = useState({});
@@ -68,12 +68,19 @@ export const StatusProvider = ({ children, status, setStatus, setIsError }) => {
 
   //Delete existing status
   const deleteStatus = async (data) => {
+    /*Reset alert state */
+    setIsAlert({ status: false, msg: "", statusText: "" });
     //DELETE Request /statuses/:id to delete status
     const res = await fetch(`/api/v1/statuses/${data.id}`, {
       method: "DELETE",
     });
-    if (!res.ok) {
+    if (res.status === 500) {
       setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      return;
+    }
+    if (res.status === 400) {
+      //Set alert state to true
+      setIsAlert({ status: true, statusText: res.statusText, msg: "Operation nicht möglich!" });
       return;
     }
     //Update status state (setStatus in App Component)
@@ -88,7 +95,7 @@ export const StatusProvider = ({ children, status, setStatus, setIsError }) => {
 
   return (
     <StatusContext.Provider
-      value={{ status, setStatus, isNewStatus, setIsNewStatus, setIsExistingStatusDescription, isExistingStatusDescription, selectedStatus, setSelectedStatus, isEdit, setIsEdit, addStatus, updateStatus, deleteStatus }}
+      value={{ status, setStatus, isNewStatus, setIsNewStatus, setIsExistingStatusDescription, isExistingStatusDescription, selectedStatus, setSelectedStatus, isEdit, setIsEdit, addStatus, updateStatus, deleteStatus, isAlert }}
     >
       {children}
     </StatusContext.Provider>

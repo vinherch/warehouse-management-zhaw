@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const ArticlesContext = createContext();
 
-export const ArticlesProvider = ({ children, article, setArticle, status, category, currency, setIsError }) => {
+export const ArticlesProvider = ({ children, article, setArticle, status, category, currency, setIsError, setIsAlert, isAlert }) => {
   /* States */
   //State for checking which article is selected in the UI - Article Container
   const [selectedArticle, setSelectedArticle] = useState({});
@@ -25,7 +25,8 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
       body: JSON.stringify(newArticle),
     });
     if (!res.ok) {
-      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      //setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      setIsAlert({ status: true, msg: res.statusText });
       return;
     }
     const data = await res.json();
@@ -37,6 +38,22 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
 
   //Delete existing Article
   const deleteArticle = async (data) => {
+    /*Reset alert state */
+    setIsAlert({ status: false, msg: "", statusText: "" });
+
+    //DELETE Request /articles/:id to delete article
+    const res = await fetch(`/api/v1/articles/${data.id}`, {
+      method: "DELETE",
+    });
+    if (res.status === 500) {
+      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      return;
+    }
+    if (res.status === 400) {
+      //Set alert state to true
+      setIsAlert({ status: true, statusText: res.statusText, msg: "Operation nicht möglich!" });
+      return;
+    }
     //Update article state (setArticle in App Component)
     setArticle(
       article.filter((e) => {
@@ -45,15 +62,6 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
         }
       })
     );
-
-    //DELETE Request /articles/:id to delete article
-    const res = await fetch(`/api/v1/articles/${data.id}`, {
-      method: "DELETE",
-    });
-    if (!res.ok) {
-      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
-      return;
-    }
   };
 
   //Update existing Article
@@ -104,6 +112,7 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
         addArticle,
         updateArticle,
         deleteArticle,
+        isAlert,
       }}
     >
       {children}

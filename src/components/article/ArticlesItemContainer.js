@@ -5,10 +5,11 @@ import ButtonCreateArticle from "./ButtonCreateArticle";
 import ArticlesContext from "../../contexts/ArticlesContext";
 import ArticleEdit from "./ArticleEdit";
 import ArticleNew from "./ArticleNew";
+import Alert from "../shared/Alert";
 
 function ArticlesItemContainer() {
   //useContext - Get Articles Data / State
-  const { isEdit, isNewArticle, setIsNewArticle, article } = useContext(ArticlesContext);
+  const { isEdit, isNewArticle, setIsNewArticle, article, isAlert } = useContext(ArticlesContext);
 
   return (
     <div className="item-container">
@@ -19,6 +20,8 @@ function ArticlesItemContainer() {
       </div>
       {isEdit && <ArticleEdit />}
       {isNewArticle && <ArticleNew />}
+      {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
+      {}
       <div className="item-container-content">
         <table>
           <thead>

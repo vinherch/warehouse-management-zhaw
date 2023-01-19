@@ -47,8 +47,9 @@ function App() {
   /* State for loading Spinner Control */
   const [isLoading, setIsLoading] = useState(true);
 
-  /* State for Error Control */
+  /* State for Error & Alert Control */
   const [isError, setIsError] = useState({ status: false, error: 0 });
+  const [isAlert, setIsAlert] = useState({ status: false, statusText: "", msg: "" });
 
   /* Header Title - Depending on route */
   const [headerTitle, setHeaderTitle] = useState("");
@@ -88,6 +89,7 @@ function App() {
 
   const fetchArticleData = async () => {
     const res = await fetch("/api/v1/articles");
+    /*If fetch request failes - show error */
     if (!res.ok) {
       setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
       return;
@@ -97,6 +99,7 @@ function App() {
 
   const fetchCategoryData = async () => {
     const res = await fetch("/api/v1/categories");
+    /*If fetch request failes - show error */
     if (!res.ok) {
       setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
       return;
@@ -106,6 +109,7 @@ function App() {
 
   const fetchCurrencyData = async () => {
     const res = await fetch("/api/v1/currencies");
+    /*If fetch request failes - show error */
     if (!res.ok) {
       setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
       return;
@@ -115,6 +119,7 @@ function App() {
 
   const fetchLocationData = async () => {
     const res = await fetch("/api/v1/locations");
+    /*If fetch request failes - show error */
     if (!res.ok) {
       setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
       return;
@@ -124,6 +129,7 @@ function App() {
 
   const fetchStatusData = async () => {
     const res = await fetch("/api/v1/statuses");
+    /*If fetch request failes - show error */
     if (!res.ok) {
       setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
       return;
@@ -133,6 +139,7 @@ function App() {
 
   const fetchWarehouseData = async () => {
     const res = await fetch("/api/v1/warehouses");
+    /*If fetch request failes - show error */
     if (!res.ok) {
       setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
       return;
@@ -176,8 +183,8 @@ function App() {
           path={"/articles"}
           element={
             <>
-              <ArticlesProvider setIsError={setIsError} article={article} setArticle={setArticle} status={status} category={category} currency={currency}>
-                <Articles setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} />
+              <ArticlesProvider setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert} article={article} setArticle={setArticle} status={status} category={category} currency={currency}>
+                <Articles setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} setIsAlert={setIsAlert} />
               </ArticlesProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>
@@ -187,8 +194,8 @@ function App() {
           path={"/categories"}
           element={
             <>
-              <CategoriesProvider category={category} setCategory={setCategory} setIsError={setIsError}>
-                <Categories setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} />
+              <CategoriesProvider category={category} setCategory={setCategory} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert}>
+                <Categories setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} setIsAlert={setIsAlert} />
               </CategoriesProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>
@@ -199,8 +206,8 @@ function App() {
           path={"/currencies"}
           element={
             <>
-              <CurrenciesProvider currency={currency} setCurrency={setCurrency} setIsError={setIsError}>
-                <Currencies setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} />
+              <CurrenciesProvider currency={currency} setCurrency={setCurrency} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert}>
+                <Currencies setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} setIsAlert={setIsAlert} />
               </CurrenciesProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>
@@ -210,8 +217,8 @@ function App() {
           path={"/locations"}
           element={
             <>
-              <LocationsProvider location={location} setLocation={setLocation} setIsError={setIsError}>
-                <Locations setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} />
+              <LocationsProvider location={location} setLocation={setLocation} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert}>
+                <Locations setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} setIsAlert={setIsAlert} />
               </LocationsProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>
@@ -221,8 +228,8 @@ function App() {
           path={"/status"}
           element={
             <>
-              <StatusProvider status={status} setStatus={setStatus} setIsError={setIsError}>
-                <Status setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} />
+              <StatusProvider status={status} setStatus={setStatus} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert}>
+                <Status setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} setIsAlert={setIsAlert} />
               </StatusProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>
@@ -232,8 +239,8 @@ function App() {
           path={"/warehouses"}
           element={
             <>
-              <WarehousesProvider warehouse={warehouse} setWarehouse={setWarehouse} article={article} location={location} setIsError={setIsError}>
-                <Warehouses setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} />
+              <WarehousesProvider warehouse={warehouse} setWarehouse={setWarehouse} article={article} location={location} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert}>
+                <Warehouses setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} setIsAlert={setIsAlert} />
               </WarehousesProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>

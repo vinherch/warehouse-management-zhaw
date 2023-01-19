@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const LocationsContext = createContext();
 
-export const LocationsProvider = ({ children, location, setLocation, setIsError }) => {
+export const LocationsProvider = ({ children, location, setLocation, setIsError, isAlert, setIsAlert }) => {
   /* States */
   //State for checking which location is selected in the UI - Location Container
   const [selectedLocation, setSelectedLocation] = useState({});
@@ -68,6 +68,21 @@ export const LocationsProvider = ({ children, location, setLocation, setIsError 
 
   //Delete existing location
   const deleteLocation = async (data) => {
+    /*Reset alert state */
+    setIsAlert({ status: false, msg: "", statusText: "" });
+    //DELETE Request /locations/:id to delete location
+    const res = await fetch(`/api/v1/locations/${data.id}`, {
+      method: "DELETE",
+    });
+    if (res.status === 500) {
+      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      return;
+    }
+    if (res.status === 400) {
+      //Set alert state to true
+      setIsAlert({ status: true, statusText: res.statusText, msg: "Operation nicht möglich!" });
+      return;
+    }
     //Update location state (setLocation in App Component)
     setLocation(
       location.filter((e) => {
@@ -76,20 +91,26 @@ export const LocationsProvider = ({ children, location, setLocation, setIsError 
         }
       })
     );
-
-    //DELETE Request /locations/:id to delete location
-    const res = await fetch(`/api/v1/locations/${data.id}`, {
-      method: "DELETE",
-    });
-    if (!res.ok) {
-      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
-      return;
-    }
   };
 
   return (
     <LocationsContext.Provider
-      value={{ location, setLocation, isNewLocation, setIsNewLocation, selectedLocation, setSelectedLocation, isEdit, setIsEdit, isExistingLocationCombination, setIsExistingLocationCombination, addLocation, updateLocation, deleteLocation }}
+      value={{
+        location,
+        setLocation,
+        isNewLocation,
+        setIsNewLocation,
+        selectedLocation,
+        setSelectedLocation,
+        isEdit,
+        setIsEdit,
+        isExistingLocationCombination,
+        setIsExistingLocationCombination,
+        addLocation,
+        updateLocation,
+        deleteLocation,
+        isAlert,
+      }}
     >
       {children}
     </LocationsContext.Provider>

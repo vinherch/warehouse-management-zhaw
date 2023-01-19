@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const WarehousesContext = createContext();
 
-export const WarehousesProvider = ({ children, warehouse, setWarehouse, article, location, setIsError }) => {
+export const WarehousesProvider = ({ children, warehouse, setWarehouse, article, location, setIsError, isAlert, setIsAlert }) => {
   /* States */
   //State for checking which entry is selected in the UI
   const [selectedWarehouseEntry, setSelectedWarehouseEntry] = useState({});
@@ -35,6 +35,21 @@ export const WarehousesProvider = ({ children, warehouse, setWarehouse, article,
 
   //Delete existing warehouse entry
   const deleteWarehouse = async (data) => {
+    /*Reset alert state */
+    setIsAlert({ status: false, msg: "", statusText: "" });
+    //DELETE Request /warehouses/:id to delete warehouse entry
+    const res = await fetch(`/api/v1/warehouses/${data.id}`, {
+      method: "DELETE",
+    });
+    if (res.status === 500) {
+      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      return;
+    }
+    if (res.status === 400) {
+      //Set alert state to true
+      setIsAlert({ status: true, statusText: res.statusText, msg: "Operation nicht möglich!" });
+      return;
+    }
     //Update warehouse state (setWarehouse in App Component)
     setWarehouse(
       warehouse.filter((e) => {
@@ -43,15 +58,6 @@ export const WarehousesProvider = ({ children, warehouse, setWarehouse, article,
         }
       })
     );
-
-    //DELETE Request /warehouses/:id to delete warehouse entry
-    const res = await fetch(`/api/v1/warehouses/${data.id}`, {
-      method: "DELETE",
-    });
-    if (!res.ok) {
-      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
-      return;
-    }
   };
 
   //Update existing warehouse entry - quantity can be updated
@@ -95,7 +101,7 @@ export const WarehousesProvider = ({ children, warehouse, setWarehouse, article,
 
   return (
     <WarehousesContext.Provider
-      value={{ warehouse, addWarehouse, deleteWarehouse, updateWarehouse, setWarehouse, article, location, selectedWarehouseEntry, setSelectedWarehouseEntry, isNewWarehouse, setIsNewWarehouse, isEdit, setIsEdit, sendEmail }}
+      value={{ warehouse, addWarehouse, deleteWarehouse, updateWarehouse, setWarehouse, article, location, selectedWarehouseEntry, setSelectedWarehouseEntry, isNewWarehouse, setIsNewWarehouse, isEdit, setIsEdit, sendEmail, isAlert }}
     >
       {children}
     </WarehousesContext.Provider>
