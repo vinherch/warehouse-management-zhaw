@@ -68,8 +68,8 @@ export const CategoriesProvider = ({ children, category, setCategory, setIsError
   const deleteCategory = async (data) => {
     /*Reset alert state */
     setIsAlert({ status: false, msg: "", statusText: "" });
-    /*Reset alert state */
-    setIsAlert({ status: false, msg: "", statusText: "" });
+    //Check if no category element is in edit mode. If true, prevent delete operation
+    if (isEdit) return;
     //DELETE Request /categories/:id to delete category
     const res = await fetch(`/api/v1/categories/${data.id}`, {
       method: "DELETE",

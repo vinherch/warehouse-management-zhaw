@@ -31,8 +31,8 @@ function WarehousesItemContainer() {
           </div>
         </div>
       </div>
-      {isEdit && <WarehouseEdit />}
       {isNewWarehouse && <WarehouseNew />}
+      {isEdit && <WarehouseEdit />}
       {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
       <div className="item-container-content">
         <table>

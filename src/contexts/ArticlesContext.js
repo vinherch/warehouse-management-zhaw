@@ -40,7 +40,8 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
   const deleteArticle = async (data) => {
     /*Reset alert state */
     setIsAlert({ status: false, msg: "", statusText: "" });
-
+    //Check if no article element is in edit mode. If true, prevent delete operation
+    if (isEdit) return;
     //DELETE Request /articles/:id to delete article
     const res = await fetch(`/api/v1/articles/${data.id}`, {
       method: "DELETE",

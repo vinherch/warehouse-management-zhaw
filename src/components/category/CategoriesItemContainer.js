@@ -17,8 +17,8 @@ function CategoriesItemContainer() {
           Kategorie erfassen
         </ButtonCreateCategory>
       </div>
-      {isEdit && <CategoryEdit />}
       {isNewCategory && <CategoryNew />}
+      {isEdit && <CategoryEdit />}
       {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
       <div className="item-container-content">
         <table>

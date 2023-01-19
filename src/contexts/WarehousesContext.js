@@ -37,6 +37,8 @@ export const WarehousesProvider = ({ children, warehouse, setWarehouse, article,
   const deleteWarehouse = async (data) => {
     /*Reset alert state */
     setIsAlert({ status: false, msg: "", statusText: "" });
+    //Check if no warehouse element is in edit mode. If true, prevent delete operation
+    if (isEdit) return;
     //DELETE Request /warehouses/:id to delete warehouse entry
     const res = await fetch(`/api/v1/warehouses/${data.id}`, {
       method: "DELETE",

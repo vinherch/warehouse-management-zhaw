@@ -70,6 +70,8 @@ export const LocationsProvider = ({ children, location, setLocation, setIsError,
   const deleteLocation = async (data) => {
     /*Reset alert state */
     setIsAlert({ status: false, msg: "", statusText: "" });
+    //Check if no location element is in edit mode. If true, prevent delete operation
+    if (isEdit) return;
     //DELETE Request /locations/:id to delete location
     const res = await fetch(`/api/v1/locations/${data.id}`, {
       method: "DELETE",

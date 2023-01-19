@@ -60,7 +60,6 @@ export const CurrenciesProvider = ({ children, currency, setCurrency, setIsError
     if (!res.ok) {
       setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
     }
-
     //set setIsEdit state to false after update
     setIsEdit(false);
     //SetSelectedCurrency state will be set to {} after uppdate
@@ -71,6 +70,8 @@ export const CurrenciesProvider = ({ children, currency, setCurrency, setIsError
   const deleteCurrency = async (data) => {
     /*Reset alert state */
     setIsAlert({ status: false, msg: "", statusText: "" });
+    //Check if no currency element is in edit mode. If true, prevent delete operation
+    if (isEdit) return;
     //DELETE Request /currencies/:id to delete currency
     const res = await fetch(`/api/v1/currencies/${data.id}`, {
       method: "DELETE",

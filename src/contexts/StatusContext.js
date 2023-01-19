@@ -70,6 +70,8 @@ export const StatusProvider = ({ children, status, setStatus, setIsError, isAler
   const deleteStatus = async (data) => {
     /*Reset alert state */
     setIsAlert({ status: false, msg: "", statusText: "" });
+    //Check if no status element is in edit mode. If true, prevent delete operation
+    if (isEdit) return;
     //DELETE Request /statuses/:id to delete status
     const res = await fetch(`/api/v1/statuses/${data.id}`, {
       method: "DELETE",

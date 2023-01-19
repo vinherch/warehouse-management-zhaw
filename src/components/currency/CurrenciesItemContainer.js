@@ -17,8 +17,8 @@ function CurrencyItemContainer() {
           Währung erfassen
         </ButtonCreateCurrency>
       </div>
-      {isEdit && <CurrencyEdit />}
       {isNewCurrency && <CurrencyNew />}
+      {isEdit && <CurrencyEdit />}
       {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
       <div className="item-container-content">
         <table>

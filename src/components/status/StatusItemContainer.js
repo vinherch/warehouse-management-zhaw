@@ -17,8 +17,8 @@ function StatusItemContainer() {
           Status erfassen
         </ButtonCreateStatus>
       </div>
-      {isEdit && <StatusEdit />}
       {isNewStatus && <StatusNew />}
+      {isEdit && <StatusEdit />}
       {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
       <div className="item-container-content">
         <table>

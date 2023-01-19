@@ -17,8 +17,8 @@ function LocationsItemContainer() {
           Lokation erfassen
         </ButtonCreateLocation>
       </div>
-      {isEdit && <LocationEdit />}
       {isNewLocation && <LocationNew />}
+      {isEdit && <LocationEdit />}
       {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
       <div className="item-container-content">
         <table>

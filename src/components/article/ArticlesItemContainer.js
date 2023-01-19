@@ -18,8 +18,8 @@ function ArticlesItemContainer() {
           Artikel erfassen
         </ButtonCreateArticle>
       </div>
-      {isEdit && <ArticleEdit />}
       {isNewArticle && <ArticleNew />}
+      {isEdit && <ArticleEdit />}
       {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
       {}
       <div className="item-container-content">
