@@ -51,7 +51,7 @@ function App() {
   const [isError, setIsError] = useState({ status: false, error: 0 });
 
   /* Header Title - Depending on route */
-  const [headerTitle, setHeaderTitle] = useState("Test");
+  const [headerTitle, setHeaderTitle] = useState("");
 
   /* useEffect - Initial Loading of all component data when the pages loads -
    HTTP GET Request - /articles, /categories, /currencies, /locations, /status, /warehouses d*/
@@ -171,9 +171,7 @@ function App() {
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
             </>
           }
-        ></Route>
-      </Routes>
-      <Routes>
+        />
         <Route
           path={"/articles"}
           element={
@@ -185,8 +183,6 @@ function App() {
             </>
           }
         />
-      </Routes>
-      <Routes>
         <Route
           path={"/categories"}
           element={
@@ -198,8 +194,7 @@ function App() {
             </>
           }
         />
-      </Routes>
-      <Routes>
+
         <Route
           path={"/currencies"}
           element={
@@ -211,8 +206,6 @@ function App() {
             </>
           }
         />
-      </Routes>
-      <Routes>
         <Route
           path={"/locations"}
           element={
@@ -224,8 +217,6 @@ function App() {
             </>
           }
         />
-      </Routes>
-      <Routes>
         <Route
           path={"/status"}
           element={
@@ -237,8 +228,6 @@ function App() {
             </>
           }
         />
-      </Routes>
-      <Routes>
         <Route
           path={"/warehouses"}
           element={
@@ -250,8 +239,6 @@ function App() {
             </>
           }
         />
-      </Routes>
-      <Routes>
         <Route path={"/*"} element={<ErrorRoute />} />
       </Routes>
     </Router>
