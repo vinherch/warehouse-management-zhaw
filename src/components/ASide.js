@@ -30,16 +30,6 @@ function ASide({ asideMenueState, setAsideMenueState }) {
             </ul>
           </div>
         </div>
-        <div className="aside-menue-section">
-          <h4>Kontakt</h4>
-          <div className="aside-menue-contact">
-            <ul>
-              <li>
-                <a href="mailto:abc@example.com">Sende E-Mail</a>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
     </aside>
   );
