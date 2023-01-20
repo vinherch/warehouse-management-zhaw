@@ -8,14 +8,18 @@ import Alert from "../shared/Alert";
 
 function CurrencyItemContainer() {
   //useContext - Get Currencies Data / State from context
-  const { isEdit, isNewCurrency, setIsNewCurrency, currency, isAlert } = useContext(CurrenciesContext);
+  const { isEdit, isNewCurrency, setIsNewCurrency, currency, isAlert, downloadCSV } = useContext(CurrenciesContext);
 
   return (
     <div className="item-container">
       <div className="item-container-header">
-        <ButtonCreateCurrency setIsNewCurrency={setIsNewCurrency} isNewCurrency={isNewCurrency}>
-          Währung erfassen
-        </ButtonCreateCurrency>
+        <div className="btn-container">
+          <div>
+            <ButtonCreateCurrency setIsNewCurrency={setIsNewCurrency} isNewCurrency={isNewCurrency}>
+              Währung erfassen
+            </ButtonCreateCurrency>
+          </div>
+        </div>
       </div>
       {isNewCurrency && <CurrencyNew />}
       {isEdit && <CurrencyEdit />}
@@ -36,6 +40,11 @@ function CurrencyItemContainer() {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="btn-csv-container">
+        <button className="btn-csv" onClick={async () => downloadCSV("currencies", "Currencies")}>
+          CSV Export
+        </button>
       </div>
     </div>
   );

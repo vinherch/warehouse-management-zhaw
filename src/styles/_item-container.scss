@@ -77,9 +77,11 @@
 }
 
 .btn-new,
-.btn-email {
+.btn-email,
+.btn-csv {
   border: 1px solid rgb(79, 79, 79);
   height: 4.5rem;
+  width: 25rem;
   box-shadow: 2px 2px 5px rgb(146, 146, 146);
   border-radius: 0.8rem;
   padding: 1.2rem 5rem;
@@ -91,6 +93,11 @@
     color: #fff;
     scale: 1.06;
   }
+}
+
+.btn-csv-container {
+  margin-top: 2rem;
+  text-align: right;
 }
 
 .item-container-content {
@@ -208,7 +215,8 @@
   }
 
   .btn-new,
-  .btn-warehouse {
+  .btn-warehouse,
+  .btn-csv {
     width: 95%;
     margin: auto;
     &:hover {
@@ -225,6 +233,10 @@
   .btn-container {
     flex-direction: column;
     gap: 1rem;
+  }
+
+  .btn-csv-container {
+    text-align: center;
   }
 
   .btn-edit,

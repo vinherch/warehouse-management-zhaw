@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const CategoriesContext = createContext();
 
-export const CategoriesProvider = ({ children, category, setCategory, setIsError, isAlert, setIsAlert }) => {
+export const CategoriesProvider = ({ children, category, setCategory, setIsError, isAlert, setIsAlert, downloadCSV }) => {
   /* States */
   //State for checking which category is selected in the UI - Category Container
   const [selectedCategory, setSelectedCategory] = useState({});
@@ -110,6 +110,7 @@ export const CategoriesProvider = ({ children, category, setCategory, setIsError
         updateCategory,
         deleteCategory,
         isAlert,
+        downloadCSV,
       }}
     >
       {children}

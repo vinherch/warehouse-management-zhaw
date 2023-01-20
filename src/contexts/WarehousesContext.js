@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const WarehousesContext = createContext();
 
-export const WarehousesProvider = ({ children, warehouse, setWarehouse, article, location, setIsError, isAlert, setIsAlert }) => {
+export const WarehousesProvider = ({ children, warehouse, setWarehouse, article, location, setIsError, isAlert, setIsAlert, downloadCSV }) => {
   /* States */
   //State for checking which entry is selected in the UI
   const [selectedWarehouseEntry, setSelectedWarehouseEntry] = useState({});
@@ -134,6 +134,7 @@ export const WarehousesProvider = ({ children, warehouse, setWarehouse, article,
         sendEmail,
         isAlert,
         mailSent,
+        downloadCSV,
       }}
     >
       {children}

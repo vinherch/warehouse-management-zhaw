@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const CurrenciesContext = createContext();
 
-export const CurrenciesProvider = ({ children, currency, setCurrency, setIsError, isAlert, setIsAlert }) => {
+export const CurrenciesProvider = ({ children, currency, setCurrency, setIsError, isAlert, setIsAlert, downloadCSV }) => {
   /* States */
   //State for checking which currency is selected in the UI - Currency Container
   const [selectedCurrency, setSelectedCurrency] = useState({});
@@ -97,7 +97,23 @@ export const CurrenciesProvider = ({ children, currency, setCurrency, setIsError
 
   return (
     <CurrenciesContext.Provider
-      value={{ currency, setCurrency, isNewCurrency, setIsNewCurrency, selectedCurrency, setSelectedCurrency, isEdit, setIsEdit, isExistingCurrencyCode, setIsExistingCurrencyCode, addCurrency, updateCurrency, deleteCurrency, isAlert }}
+      value={{
+        currency,
+        setCurrency,
+        isNewCurrency,
+        setIsNewCurrency,
+        selectedCurrency,
+        setSelectedCurrency,
+        isEdit,
+        setIsEdit,
+        isExistingCurrencyCode,
+        setIsExistingCurrencyCode,
+        addCurrency,
+        updateCurrency,
+        deleteCurrency,
+        isAlert,
+        downloadCSV,
+      }}
     >
       {children}
     </CurrenciesContext.Provider>

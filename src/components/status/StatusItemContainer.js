@@ -8,14 +8,18 @@ import Alert from "../shared/Alert";
 
 function StatusItemContainer() {
   //useContext - Get status data / state from context
-  const { isEdit, isNewStatus, setIsNewStatus, status, isAlert } = useContext(StatusContext);
+  const { isEdit, isNewStatus, setIsNewStatus, status, isAlert, downloadCSV } = useContext(StatusContext);
 
   return (
     <div className="item-container">
       <div className="item-container-header">
-        <ButtonCreateStatus setIsNewStatus={setIsNewStatus} isNewStatus={isNewStatus}>
-          Status erfassen
-        </ButtonCreateStatus>
+        <div className="btn-container">
+          <div>
+            <ButtonCreateStatus setIsNewStatus={setIsNewStatus} isNewStatus={isNewStatus}>
+              Status erfassen
+            </ButtonCreateStatus>
+          </div>
+        </div>
       </div>
       {isNewStatus && <StatusNew />}
       {isEdit && <StatusEdit />}
@@ -35,6 +39,11 @@ function StatusItemContainer() {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="btn-csv-container">
+        <button className="btn-csv" onClick={async () => downloadCSV("statuses", "Status")}>
+          CSV Export
+        </button>
       </div>
     </div>
   );

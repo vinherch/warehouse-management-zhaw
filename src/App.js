@@ -160,6 +160,25 @@ function App() {
     }
   };
 
+  /* Handling for CSV Download */
+  const downloadCSV = async (entity, filename) => {
+    //GET Request /articles/csv
+    const res = await fetch(`/api/v1/${entity}/csv`, {
+      method: "GET",
+    });
+    if (res.status === 500) {
+      setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      return;
+    }
+    //Create data blob
+    const data = await res.blob();
+    const url = window.URL.createObjectURL(new Blob([data]));
+    const downloadLink = document.createElement("a");
+    downloadLink.href = url;
+    downloadLink.download = `${filename}.csv`;
+    downloadLink.click();
+  };
+
   return isError.status ? (
     <ErrorMessage error={isError.error} />
   ) : isLoading ? (
@@ -183,7 +202,7 @@ function App() {
           path={"/articles"}
           element={
             <>
-              <ArticlesProvider setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert} article={article} setArticle={setArticle} status={status} category={category} currency={currency}>
+              <ArticlesProvider setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert} article={article} setArticle={setArticle} status={status} category={category} currency={currency} downloadCSV={downloadCSV}>
                 <Articles setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} setIsAlert={setIsAlert} />
               </ArticlesProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
@@ -194,7 +213,7 @@ function App() {
           path={"/categories"}
           element={
             <>
-              <CategoriesProvider category={category} setCategory={setCategory} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert}>
+              <CategoriesProvider category={category} setCategory={setCategory} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert} downloadCSV={downloadCSV}>
                 <Categories setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} setIsAlert={setIsAlert} />
               </CategoriesProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
@@ -206,7 +225,7 @@ function App() {
           path={"/currencies"}
           element={
             <>
-              <CurrenciesProvider currency={currency} setCurrency={setCurrency} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert}>
+              <CurrenciesProvider currency={currency} setCurrency={setCurrency} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert} downloadCSV={downloadCSV}>
                 <Currencies setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} setIsAlert={setIsAlert} />
               </CurrenciesProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
@@ -217,7 +236,7 @@ function App() {
           path={"/locations"}
           element={
             <>
-              <LocationsProvider location={location} setLocation={setLocation} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert}>
+              <LocationsProvider location={location} setLocation={setLocation} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert} downloadCSV={downloadCSV}>
                 <Locations setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} setIsAlert={setIsAlert} />
               </LocationsProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
@@ -228,7 +247,7 @@ function App() {
           path={"/status"}
           element={
             <>
-              <StatusProvider status={status} setStatus={setStatus} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert}>
+              <StatusProvider status={status} setStatus={setStatus} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert} downloadCSV={downloadCSV}>
                 <Status setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} setIsAlert={setIsAlert} />
               </StatusProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />
@@ -239,7 +258,7 @@ function App() {
           path={"/warehouses"}
           element={
             <>
-              <WarehousesProvider warehouse={warehouse} setWarehouse={setWarehouse} article={article} location={location} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert}>
+              <WarehousesProvider warehouse={warehouse} setWarehouse={setWarehouse} article={article} location={location} setIsError={setIsError} isAlert={isAlert} setIsAlert={setIsAlert} downloadCSV={downloadCSV}>
                 <Warehouses setAsideMenueState={setAsideMenueState} setHeaderTitle={setHeaderTitle} setIsAlert={setIsAlert} />
               </WarehousesProvider>
               <ASide asideMenueState={asideMenueState} setAsideMenueState={setAsideMenueState} />

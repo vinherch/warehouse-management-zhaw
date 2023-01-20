@@ -8,14 +8,18 @@ import Alert from "../shared/Alert";
 
 function LocationsItemContainer() {
   //useContext - Get locations data / state from context
-  const { isEdit, isNewLocation, setIsNewLocation, location, isAlert } = useContext(LocationsContext);
+  const { isEdit, isNewLocation, setIsNewLocation, location, isAlert, downloadCSV } = useContext(LocationsContext);
 
   return (
     <div className="item-container">
       <div className="item-container-header">
-        <ButtonCreateLocation setIsNewLocation={setIsNewLocation} isNewLocation={isNewLocation}>
-          Lokation erfassen
-        </ButtonCreateLocation>
+        <div className="btn-container">
+          <div>
+            <ButtonCreateLocation setIsNewLocation={setIsNewLocation} isNewLocation={isNewLocation}>
+              Lokation erfassen
+            </ButtonCreateLocation>
+          </div>
+        </div>
       </div>
       {isNewLocation && <LocationNew />}
       {isEdit && <LocationEdit />}
@@ -37,6 +41,11 @@ function LocationsItemContainer() {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="btn-csv-container">
+        <button className="btn-csv" onClick={async () => downloadCSV("locations", "Locations")}>
+          CSV Export
+        </button>
       </div>
     </div>
   );

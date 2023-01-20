@@ -9,7 +9,7 @@ import FlashMessage from "../shared/FlashMessage";
 
 function WarehousesItemContainer() {
   //useContext - Get warehouse data / States from context
-  const { isEdit, isNewWarehouse, setIsNewWarehouse, warehouse, sendEmail, isAlert, mailSent } = useContext(WarehousesContext);
+  const { isEdit, isNewWarehouse, setIsNewWarehouse, warehouse, sendEmail, isAlert, mailSent, downloadCSV } = useContext(WarehousesContext);
 
   return (
     <div className="item-container">
@@ -63,6 +63,11 @@ function WarehousesItemContainer() {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="btn-csv-container">
+        <button className="btn-csv" onClick={async () => downloadCSV("warehouses", "Warehouse")}>
+          CSV Export
+        </button>
       </div>
     </div>
   );

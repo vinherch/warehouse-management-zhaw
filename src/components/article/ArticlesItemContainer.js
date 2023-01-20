@@ -9,19 +9,22 @@ import Alert from "../shared/Alert";
 
 function ArticlesItemContainer() {
   //useContext - Get Articles Data / State
-  const { isEdit, isNewArticle, setIsNewArticle, article, isAlert } = useContext(ArticlesContext);
+  const { isEdit, isNewArticle, setIsNewArticle, article, isAlert, downloadCSV } = useContext(ArticlesContext);
 
   return (
     <div className="item-container">
       <div className="item-container-header">
-        <ButtonCreateArticle setIsNewArticle={setIsNewArticle} isNewArticle={isNewArticle}>
-          Artikel erfassen
-        </ButtonCreateArticle>
+        <div className="btn-container">
+          <div>
+            <ButtonCreateArticle setIsNewArticle={setIsNewArticle} isNewArticle={isNewArticle}>
+              Artikel erfassen
+            </ButtonCreateArticle>
+          </div>
+        </div>
       </div>
       {isNewArticle && <ArticleNew />}
       {isEdit && <ArticleEdit />}
       {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
-      {}
       <div className="item-container-content">
         <table>
           <thead>
@@ -41,6 +44,11 @@ function ArticlesItemContainer() {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="btn-csv-container">
+        <button className="btn-csv" onClick={async () => downloadCSV("articles", "Articles")}>
+          CSV Export
+        </button>
       </div>
     </div>
   );

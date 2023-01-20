@@ -8,14 +8,18 @@ import Alert from "../shared/Alert";
 
 function CategoriesItemContainer() {
   //useContext - Get Categories Data / State from context
-  const { isEdit, isNewCategory, setIsNewCategory, category, isAlert } = useContext(CategoriesContext);
+  const { isEdit, isNewCategory, setIsNewCategory, category, isAlert, downloadCSV } = useContext(CategoriesContext);
 
   return (
     <div className="item-container">
       <div className="item-container-header">
-        <ButtonCreateCategory setIsNewCategory={setIsNewCategory} isNewCategory={isNewCategory}>
-          Kategorie erfassen
-        </ButtonCreateCategory>
+        <div className="btn-container">
+          <div>
+            <ButtonCreateCategory setIsNewCategory={setIsNewCategory} isNewCategory={isNewCategory}>
+              Kategorie erfassen
+            </ButtonCreateCategory>
+          </div>
+        </div>
       </div>
       {isNewCategory && <CategoryNew />}
       {isEdit && <CategoryEdit />}
@@ -35,6 +39,11 @@ function CategoriesItemContainer() {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="btn-csv-container">
+        <button className="btn-csv" onClick={async () => downloadCSV("categories", "Categories")}>
+          CSV Export
+        </button>
       </div>
     </div>
   );

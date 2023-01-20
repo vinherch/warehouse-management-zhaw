@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const StatusContext = createContext();
 
-export const StatusProvider = ({ children, status, setStatus, setIsError, isAlert, setIsAlert }) => {
+export const StatusProvider = ({ children, status, setStatus, setIsError, isAlert, setIsAlert, downloadCSV }) => {
   /* States */
   //State for checking which status is selected in the UI - Status Container
   const [selectedStatus, setSelectedStatus] = useState({});
@@ -97,7 +97,7 @@ export const StatusProvider = ({ children, status, setStatus, setIsError, isAler
 
   return (
     <StatusContext.Provider
-      value={{ status, setStatus, isNewStatus, setIsNewStatus, setIsExistingStatusDescription, isExistingStatusDescription, selectedStatus, setSelectedStatus, isEdit, setIsEdit, addStatus, updateStatus, deleteStatus, isAlert }}
+      value={{ status, setStatus, isNewStatus, setIsNewStatus, setIsExistingStatusDescription, isExistingStatusDescription, selectedStatus, setSelectedStatus, isEdit, setIsEdit, addStatus, updateStatus, deleteStatus, isAlert, downloadCSV }}
     >
       {children}
     </StatusContext.Provider>

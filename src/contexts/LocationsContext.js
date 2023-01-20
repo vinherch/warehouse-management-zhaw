@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const LocationsContext = createContext();
 
-export const LocationsProvider = ({ children, location, setLocation, setIsError, isAlert, setIsAlert }) => {
+export const LocationsProvider = ({ children, location, setLocation, setIsError, isAlert, setIsAlert, downloadCSV }) => {
   /* States */
   //State for checking which location is selected in the UI - Location Container
   const [selectedLocation, setSelectedLocation] = useState({});
@@ -112,6 +112,7 @@ export const LocationsProvider = ({ children, location, setLocation, setIsError,
         updateLocation,
         deleteLocation,
         isAlert,
+        downloadCSV,
       }}
     >
       {children}

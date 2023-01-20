@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 
 const ArticlesContext = createContext();
 
-export const ArticlesProvider = ({ children, article, setArticle, status, category, currency, setIsError, setIsAlert, isAlert }) => {
+export const ArticlesProvider = ({ children, article, setArticle, status, category, currency, setIsError, setIsAlert, isAlert, downloadCSV }) => {
   /* States */
   //State for checking which article is selected in the UI - Article Container
   const [selectedArticle, setSelectedArticle] = useState({});
@@ -114,6 +114,7 @@ export const ArticlesProvider = ({ children, article, setArticle, status, catego
         updateArticle,
         deleteArticle,
         isAlert,
+        downloadCSV,
       }}
     >
       {children}
