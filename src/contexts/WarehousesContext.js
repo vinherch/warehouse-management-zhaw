@@ -10,6 +10,8 @@ export const WarehousesProvider = ({ children, warehouse, setWarehouse, article,
   const [isEdit, setIsEdit] = useState(false);
   //State for new warehouse entry - toggle article new mask
   const [isNewWarehouse, setIsNewWarehouse] = useState(false);
+  //State for mail send notification
+  const [mailSent, setMailSent] = useState(false);
 
   //Operations for Warehouse Managmeent
   //Create new Warehouse entry
@@ -93,17 +95,46 @@ export const WarehousesProvider = ({ children, warehouse, setWarehouse, article,
 
   //Send E-Mail from - Send Mail Button in Warehouse
   const sendEmail = async () => {
+    /*Reset mail sent state to false */
+    setMailSent(false);
     const res = await fetch("/api/v1/mail", {
-      method: "POST",
+      method: "GET",
     });
-    if (!res.ok) {
+    if (res.status === 500) {
       setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
+      return;
+    }
+    if (res.status === 400) {
+      //Set alert state to true
+      setIsAlert({ status: true, statusText: res.statusText, msg: "Operation nicht möglich!" });
+      return;
+    }
+    if (res.ok) {
+      /* Set mail sent state to true */
+      setMailSent(true);
     }
   };
 
   return (
     <WarehousesContext.Provider
-      value={{ warehouse, addWarehouse, deleteWarehouse, updateWarehouse, setWarehouse, article, location, selectedWarehouseEntry, setSelectedWarehouseEntry, isNewWarehouse, setIsNewWarehouse, isEdit, setIsEdit, sendEmail, isAlert }}
+      value={{
+        warehouse,
+        addWarehouse,
+        deleteWarehouse,
+        updateWarehouse,
+        setWarehouse,
+        article,
+        location,
+        selectedWarehouseEntry,
+        setSelectedWarehouseEntry,
+        isNewWarehouse,
+        setIsNewWarehouse,
+        isEdit,
+        setIsEdit,
+        sendEmail,
+        isAlert,
+        mailSent,
+      }}
     >
       {children}
     </WarehousesContext.Provider>

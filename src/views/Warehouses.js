@@ -1,6 +1,6 @@
 import React from "react";
 import WarehousesItemContainer from "../components/warehouse/WarehousesItemContainer";
-import { useEffect, useContext } from "react";
+import { useEffect } from "react";
 
 function Warehouses({ setAsideMenueState, setHeaderTitle, setIsAlert }) {
   //useEffect - Ensure aside menue closes if component loads

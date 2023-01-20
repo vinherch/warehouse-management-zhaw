@@ -5,10 +5,11 @@ import WarehouseEdit from "./WarehouseEdit";
 import WarehouseNew from "./WarehouseNew";
 import ButtonCreateWarehouse from "./ButtonCreateWarehouse";
 import Alert from "../shared/Alert";
+import FlashMessage from "../shared/FlashMessage";
 
 function WarehousesItemContainer() {
   //useContext - Get warehouse data / States from context
-  const { isEdit, isNewWarehouse, setIsNewWarehouse, warehouse, sendEmail, isAlert } = useContext(WarehousesContext);
+  const { isEdit, isNewWarehouse, setIsNewWarehouse, warehouse, sendEmail, isAlert, mailSent } = useContext(WarehousesContext);
 
   return (
     <div className="item-container">
@@ -22,8 +23,8 @@ function WarehousesItemContainer() {
           <div>
             <button
               className="btn-email btn-warehouse"
-              onClick={() => {
-                sendEmail();
+              onClick={async () => {
+                await sendEmail();
               }}
             >
               Sende E-Mail Bestellung
@@ -31,9 +32,14 @@ function WarehousesItemContainer() {
           </div>
         </div>
       </div>
+      {/* Toggling article create */}
       {isNewWarehouse && <WarehouseNew />}
+      {/* Toggling article edit */}
       {isEdit && <WarehouseEdit />}
+      {/* Toggling failure alert */}
       {isAlert.status && <Alert statusText={isAlert.statusText} msg={isAlert.msg} />}
+      {/* Flash message sent e-mail */}
+      {mailSent && <FlashMessage msg="E-Mail wurde erfolgreich versendet!" />}
       <div className="item-container-content">
         <table>
           <thead>
