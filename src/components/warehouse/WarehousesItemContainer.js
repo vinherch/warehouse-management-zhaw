@@ -14,14 +14,20 @@ function WarehousesItemContainer() {
   return (
     <div className="item-container">
       <div className="item-container-header">
-        <div className="btn-container">
+        <div className="btn-container btn-warehouse-container">
           <div>
             <ButtonCreateWarehouse setIsNewWarehouse={setIsNewWarehouse} isNewWarehouse={isNewWarehouse}>
               Neue Position erfassen
             </ButtonCreateWarehouse>
           </div>
           <div>
+            <button className="btn-csv" style={{ marginLeft: "auto", marginRight: "auto" }} onClick={async () => downloadCSV("warehouses", "Warehouse")}>
+              CSV Export
+            </button>
+          </div>
+          <div>
             <button
+              style={{ marginLeft: "auto" }}
               className="btn-email btn-warehouse"
               onClick={async () => {
                 await sendEmail();
@@ -63,11 +69,6 @@ function WarehousesItemContainer() {
             ))}
           </tbody>
         </table>
-      </div>
-      <div className="btn-csv-container">
-        <button className="btn-csv" onClick={async () => downloadCSV("warehouses", "Warehouse")}>
-          CSV Export
-        </button>
       </div>
     </div>
   );

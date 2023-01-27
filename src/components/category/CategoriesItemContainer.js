@@ -19,6 +19,11 @@ function CategoriesItemContainer() {
               Kategorie erfassen
             </ButtonCreateCategory>
           </div>
+          <div className="btn-csv-container">
+            <button className="btn-csv" onClick={async () => downloadCSV("categories", "Categories")}>
+              CSV Export
+            </button>
+          </div>
         </div>
       </div>
       {isNewCategory && <CategoryNew />}
@@ -39,11 +44,6 @@ function CategoriesItemContainer() {
             ))}
           </tbody>
         </table>
-      </div>
-      <div className="btn-csv-container">
-        <button className="btn-csv" onClick={async () => downloadCSV("categories", "Categories")}>
-          CSV Export
-        </button>
       </div>
     </div>
   );

@@ -8,13 +8,12 @@ function WarehouseEdit() {
   const { selectedWarehouseEntry, updateWarehouse, location } = useContext(WarehousesContext);
 
   /* States */
-
   /* State for warehouse article quantity - local state */
   const [currentArticleQuantity, setCurrentArticleQuantity] = useState(selectedWarehouseEntry.quantity);
   /* State for selected location. Default value, if nothing has been choosen from dropdown is set to the first position of locations array - local state */
   const [currentLocation, setCurrentLocation] = useState(selectedWarehouseEntry.location);
   /* State for currency update button - toggling enable/disable - local state */
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   return (
     <div>
@@ -69,10 +68,10 @@ function WarehouseEdit() {
               value={currentArticleQuantity}
               onChange={(e) => {
                 //Check if text input length is not 0
-                if (e.target.value.trim().length !== 0) {
-                  setIsDisabled(false);
-                } else {
+                if (currentArticleQuantity <= 0) {
                   setIsDisabled(true);
+                } else {
+                  setIsDisabled(false);
                 }
                 setCurrentArticleQuantity(e.target.value);
               }}

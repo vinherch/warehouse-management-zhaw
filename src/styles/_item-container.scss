@@ -4,19 +4,17 @@
 
 .item-container {
   padding: 5rem 7rem;
-  overflow-y: scroll;
   height: 75vh;
   max-width: 200rem;
   margin-left: auto;
   margin-right: auto;
-
+  overflow-y: scroll;
   h4 {
     font-size: 2rem;
   }
 }
 
 .item-container-header {
-  height: 10rem;
   display: flex;
   align-items: center;
 }
@@ -93,11 +91,6 @@
     color: #fff;
     scale: 1.06;
   }
-}
-
-.btn-csv-container {
-  margin-top: 2rem;
-  text-align: right;
 }
 
 .item-container-content {
@@ -191,6 +184,8 @@
 .btn-container {
   display: flex;
   width: 100%;
+  margin-bottom: 2.5rem;
+
   div:nth-child(2) {
     justify-content: flex-end;
   }
@@ -199,6 +194,10 @@
 .btn-container > * {
   flex: 1;
   display: flex;
+}
+
+.btn-warehouse-container {
+  margin-bottom: 2rem;
 }
 
 @media screen and (max-width: 1110px) {
@@ -212,6 +211,8 @@
     font-size: 1.2rem;
     overflow-x: scroll;
     margin-top: 1rem;
+
+    margin-bottom: 10rem;
   }
 
   .btn-new,

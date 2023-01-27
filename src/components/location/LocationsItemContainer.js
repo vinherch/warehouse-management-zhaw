@@ -19,6 +19,11 @@ function LocationsItemContainer() {
               Lokation erfassen
             </ButtonCreateLocation>
           </div>
+          <div className="btn-csv-container">
+            <button className="btn-csv" onClick={async () => downloadCSV("locations", "Locations")}>
+              CSV Export
+            </button>
+          </div>
         </div>
       </div>
       {isNewLocation && <LocationNew />}
@@ -41,11 +46,6 @@ function LocationsItemContainer() {
             ))}
           </tbody>
         </table>
-      </div>
-      <div className="btn-csv-container">
-        <button className="btn-csv" onClick={async () => downloadCSV("locations", "Locations")}>
-          CSV Export
-        </button>
       </div>
     </div>
   );

@@ -115,7 +115,7 @@ function WarehouseNew() {
               /* Create new warehouse entry - Call addWarehouse function from context. */
               /* Check if input != "" */
               if (!isDisabled) {
-                addWarehouse({ article: { id: currentArticle[0].id }, location: { id: currentLocation[0].id }, quantity: currentArticleQuantity });
+                addWarehouse({ article: currentArticle[0], location: currentLocation[0], quantity: currentArticleQuantity[0] });
               }
             }}
           >

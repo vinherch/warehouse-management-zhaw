@@ -19,6 +19,11 @@ function CurrencyItemContainer() {
               Währung erfassen
             </ButtonCreateCurrency>
           </div>
+          <div className="btn-csv-container">
+            <button className="btn-csv" onClick={async () => downloadCSV("currencies", "Currencies")}>
+              CSV Export
+            </button>
+          </div>
         </div>
       </div>
       {isNewCurrency && <CurrencyNew />}
@@ -40,11 +45,6 @@ function CurrencyItemContainer() {
             ))}
           </tbody>
         </table>
-      </div>
-      <div className="btn-csv-container">
-        <button className="btn-csv" onClick={async () => downloadCSV("currencies", "Currencies")}>
-          CSV Export
-        </button>
       </div>
     </div>
   );

@@ -20,6 +20,11 @@ function ArticlesItemContainer() {
               Artikel erfassen
             </ButtonCreateArticle>
           </div>
+          <div>
+            <button className="btn-csv" onClick={async () => downloadCSV("articles", "Articles")}>
+              CSV Export
+            </button>
+          </div>
         </div>
       </div>
       {isNewArticle && <ArticleNew />}
@@ -44,11 +49,6 @@ function ArticlesItemContainer() {
             ))}
           </tbody>
         </table>
-      </div>
-      <div className="btn-csv-container">
-        <button className="btn-csv" onClick={async () => downloadCSV("articles", "Articles")}>
-          CSV Export
-        </button>
       </div>
     </div>
   );

@@ -19,6 +19,11 @@ function StatusItemContainer() {
               Status erfassen
             </ButtonCreateStatus>
           </div>
+          <div className="btn-csv-container">
+            <button className="btn-csv" onClick={async () => downloadCSV("statuses", "Status")}>
+              CSV Export
+            </button>
+          </div>
         </div>
       </div>
       {isNewStatus && <StatusNew />}
@@ -39,11 +44,6 @@ function StatusItemContainer() {
             ))}
           </tbody>
         </table>
-      </div>
-      <div className="btn-csv-container">
-        <button className="btn-csv" onClick={async () => downloadCSV("statuses", "Status")}>
-          CSV Export
-        </button>
       </div>
     </div>
   );

@@ -22,13 +22,19 @@ export const WarehousesProvider = ({ children, warehouse, setWarehouse, article,
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newWarehouseEntry),
+      body: JSON.stringify({ article: { id: newWarehouseEntry.article.id }, location: { id: newWarehouseEntry.location.id } }),
     });
-    if (!res.ok) {
+    if (res.status === 400) {
+      //Set alert state to true
+      setIsAlert({ status: true, statusText: res.statusText, msg: "Operation nicht möglich!" });
+      return;
+    }
+    if (res.status === 500) {
       setIsError({ status: true, error: `${res.statusText}: HTTP Response Status Code: ${res.status}` });
       return;
     }
-    const data = await res.json();
+    let data = await res.json();
+    data = { ...data, ...newWarehouseEntry };
     //Update setWarehouse state with new warehouse entry
     setWarehouse([data, ...warehouse]);
     //Set isNew state to false - close view for create article
