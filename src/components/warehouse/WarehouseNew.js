@@ -96,6 +96,8 @@ function WarehouseNew() {
               id="quantity"
               value={currentArticleQuantity}
               onChange={(e) => {
+                //Check for negativ value
+                if (e.target.value < 0) return;
                 //Check if text input length is not 0
                 if (e.target.value.trim().length !== 0) {
                   setIsDisabled(false);

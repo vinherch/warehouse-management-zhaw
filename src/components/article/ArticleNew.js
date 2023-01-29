@@ -113,6 +113,8 @@ function ArticleNew() {
             id="article-amount"
             value={currentAmount}
             onChange={(e) => {
+              //Check for negativ value
+              if (e.target.value < 0) return;
               setCurrentAmount(e.target.value);
             }}
           />
